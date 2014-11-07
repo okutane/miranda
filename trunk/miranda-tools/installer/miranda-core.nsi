@@ -18,12 +18,12 @@
 
 !ifdef MIM_BUILD_UNICODE
 !define MIM_BUILD_TYPE          "unicode"
-!define MIM_BUILD_DIR           "..\..\miranda\bin\Release Unicode"
+!define MIM_BUILD_DIR           "..\..\miranda\bin9\Release Unicode"
 !else
 !define MIM_BUILD_TYPE          "ansi"
-!define MIM_BUILD_DIR           "..\..\miranda\bin\Release"
+!define MIM_BUILD_DIR           "..\..\miranda\bin9\Release"
 !endif
-!define MIM_BUILD_DIRANSI       "..\..\miranda\bin\Release"
+!define MIM_BUILD_DIRANSI       "..\..\miranda\bin9\Release"
 !define MIM_BUILD_SRC           "..\..\miranda"
 
 !define MIM_BUILD_EXE           "miranda32.exe"
@@ -129,11 +129,6 @@ LangString CLOSE_WARN ${LANG_ENGLISH}     "${MIM_NAME} is currently running.  Pl
   File "${MIM_BUILD_DIR}\plugins\${PluginFile}"
 !macroend
 
-!macro InstallMirandaPluginANSI PluginFile
-  SetOutPath "$INSTDIR\Plugins"
-  File "${MIM_BUILD_DIRANSI}\plugins\${PluginFile}"
-!macroend
-
 !macro WriteInstallerOption IniOption IniValue
   ${If} $INST_MODE = 0
     SetOutPath "$INSTDIR"
@@ -197,18 +192,19 @@ Section "${MIM_NAME}"
   !insertmacro InstallMirandaPlugin "clist_classic.dll"
   !insertmacro InstallMirandaPlugin "srmm.dll"
   !insertmacro InstallMirandaPlugin "avs.dll"
-  !insertmacro InstallMirandaPluginANSI "advaimg.dll"
+  !insertmacro InstallMirandaPlugin "advaimg.dll"
   !ifdef MIM_BUILD_UNICODE
   !insertmacro InstallMirandaPlugin "dbx_mmap.dll"
   Delete "$INSTDIR\Plugins\dbx_3x.dll"
   !else
-  !insertmacro InstallMirandaPluginANSI "dbx_3x.dll"
+  !insertmacro InstallMirandaPlugin "dbx_3x.dll"
   Delete "$INSTDIR\Plugins\dbx_mmap.dll"
   !endif
   !insertmacro InstallMirandaPlugin "chat.dll"
   ; Update Contrib plugins that exist even if options is not selected
   ${If} ${FileExists} "$INSTDIR\Plugins\clist_modern.dll"
     !insertmacro InstallMirandaPlugin "clist_modern.dll"
+    File "${MIM_BUILD_DIRANSI}\Icons\toolbar_icons.dll"
   ${EndIf}
   ${If} ${FileExists} "$INSTDIR\Plugins\clist_mw.dll"
     !insertmacro InstallMirandaPlugin "clist_mw.dll"
@@ -223,8 +219,7 @@ Section "${MIM_NAME}"
   ${If} ${FileExists} "$INSTDIR\Plugins\tabsrmm.dll"
     !insertmacro InstallMirandaPlugin "tabsrmm.dll"
     SetOutPath "$INSTDIR\Icons"
-    File "${MIM_BUILD_DIR}\Icons\tabsrmm_icons.dll"
-    File "${MIM_BUILD_DIRANSI}\Icons\toolbar_icons.dll"
+    File "${MIM_BUILD_DIRANSI}\Icons\tabsrmm_icons.dll"
   ${EndIf}
   !endif
 
@@ -247,7 +242,7 @@ Section "${MIM_NAME}"
   
   ; Gadu-Gadu
   !insertmacro PrintInstallerDetails "Installing Gadu-Gadu Protocol..."
-  !insertmacro InstallMirandaPluginANSI "GG.dll"
+  !insertmacro InstallMirandaPlugin "GG.dll"
   !insertmacro InstallMirandaProtoIcon "GG"
   
   ; ICQ 
@@ -289,6 +284,15 @@ Section "${MIM_NAME}"
     !insertmacro InstallMirandaPlugin "import.dll"
   ${ElseIf} $INST_UPGRADE = 0
     !insertmacro InstallMirandaPlugin "import.dll"
+  ${EndIf}
+  
+  ; Run redistributable
+  ${If} $INST_UPGRADE = 0
+	${If} $INST_MODE = 0
+	  File "contrib\vcredist_x86.exe"
+	  ExecWait '"$INSTDIR\vcredist_x86" /q'
+	  Delete "$INSTDIR\vcredist_x86.exe"
+	${EndIf}
   ${EndIf}
   
   ${If} $INST_MODE = 0
