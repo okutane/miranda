@@ -1,6 +1,8 @@
 /*
 Miranda Database Tool
-Copyright (C) 2001-2005  Richard Hughes
+Copyright 2000-2014 Miranda IM project, 
+all portions of this codebase are copyrighted to the people 
+listed in contributors.txt.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -18,7 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "dbtool.h"
 
-void GetProfileDirectory(TCHAR* szMirandaDir, TCHAR* szPath, int cbPath)
+void GetProfileDirectory(const TCHAR* szMirandaDir, TCHAR* szPath, int cbPath)
 {
 	TCHAR szProfileDir[MAX_PATH], szExpandedProfileDir[MAX_PATH], szMirandaBootIni[MAX_PATH];
 
@@ -33,7 +35,7 @@ void GetProfileDirectory(TCHAR* szMirandaDir, TCHAR* szPath, int cbPath)
 		szPath[lstrlen(szPath)-1] = 0;
 }
 
-static int AddDatabaseToList(HWND hwndList, TCHAR* filename, TCHAR* dir)
+static int AddDatabaseToList(HWND hwndList, TCHAR* filename, const TCHAR* dir)
 {
 	LV_ITEM lvi;
 	int iNewItem;
@@ -123,7 +125,7 @@ void FindAdd(HWND hdlg, TCHAR *szProfileDir, TCHAR *szPrefix)
 	}
 }
 
-TCHAR *addstring(TCHAR *str, TCHAR *add) {
+TCHAR *addstring(TCHAR *str, const TCHAR *add) {
 	_tcscpy(str,add);
 	return str + _tcslen(add) + 1;
 }
@@ -137,8 +139,6 @@ INT_PTR CALLBACK SelectDbDlgProc(HWND hdlg,UINT message,WPARAM wParam,LPARAM lPa
 	switch ( message ) {
 		case WM_INITDIALOG:
 		{
-			TCHAR szMirandaPath[MAX_PATH];
-			szMirandaPath[ 0 ] = 0;
 			{	HIMAGELIST hIml;
 				hIml=ImageList_Create(GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON),
 					(IsWinVerXPPlus() ? ILC_COLOR32 : ILC_COLOR16) | ILC_MASK, 3, 3);
@@ -163,42 +163,35 @@ INT_PTR CALLBACK SelectDbDlgProc(HWND hdlg,UINT message,WPARAM wParam,LPARAM lPa
 				ListView_InsertColumn(GetDlgItem(hdlg,IDC_DBLIST), 2, &lvc );
 			}
 			{
-				TCHAR *str2;
-				GetModuleFileName(NULL,szMirandaPath,SIZEOF(szMirandaPath));
-				str2 = _tcsrchr(szMirandaPath,'\\');
-				if( str2 != NULL )
-					*str2=0;
-			}
-			{
-				int i = 0;
-				HKEY hKey;
-				TCHAR szProfileDir[MAX_PATH];
-				DWORD cbData = SIZEOF(szMirandaPath);
-				TCHAR szMirandaProfiles[MAX_PATH];
+				// Method 1 - enumerate all Miranda IM paths and look for profiles
+				TCHAR szMirandaProfiles[ MAX_PATH ];
+				TCHAR szProfileDir[ MAX_PATH ];
+				PathList* pMirandaPath = GetMirandaPath();
+				for ( PathList* pPath = pMirandaPath; pPath; pPath = pPath->pNext ) {
+					_tcscpy_s(szMirandaProfiles, pPath->szPath);
+					_tcscat_s(szMirandaProfiles, _T("\\Profiles"));
 
-				_tcscpy(szMirandaProfiles, szMirandaPath);
-				_tcscat(szMirandaProfiles, _T("\\Profiles"));
-				GetProfileDirectory(szMirandaPath,szProfileDir,SIZEOF(szProfileDir));
+					GetProfileDirectory(pPath->szPath,szProfileDir,SIZEOF(szProfileDir));
 
-				// search in profile dir (using ini file)
-				if( lstrcmpi(szProfileDir,szMirandaProfiles) )
-					FindAdd(hdlg, szProfileDir, _T("[ini]\\"));
+					// search in profile dir (using ini file)
+					if( _tcsicmp(szProfileDir,szMirandaProfiles) )
+						FindAdd(hdlg, szProfileDir, _T("[ini]\\"));
 
-				FindAdd(hdlg, szMirandaProfiles, _T("[prf]\\"));
-				// search in current dir (as DBTOOL)
-        FindAdd(hdlg, szMirandaPath, _T("[ . ]\\"));
+					FindAdd(hdlg, szMirandaProfiles, _T("[prf]\\"));
 
-				// search in profile dir (using registry path + ini file)
-				if(RegOpenKeyEx(HKEY_LOCAL_MACHINE,_T("Software\\Microsoft\\Windows\\CurrentVersion\\App Paths\\miranda32.exe"),0,KEY_QUERY_VALUE,&hKey) == ERROR_SUCCESS) {
-					if(RegQueryValueEx(hKey,_T("Path"),NULL,NULL,(PBYTE)szMirandaPath,&cbData) == ERROR_SUCCESS) {
-						if( lstrcmp(szProfileDir,szMirandaPath) ) {
-							GetProfileDirectory(szMirandaPath,szProfileDir,SIZEOF(szProfileDir));
-							FindAdd(hdlg, szProfileDir, _T("[reg]\\"));
-						}
-					}
-					RegCloseKey(hKey);
+					// search in current dir (as DBTOOL)
+					FindAdd(hdlg, pPath->szPath, _T("[ . ]\\"));
 				}
+				FreePathList( pMirandaPath );
+
+				// Method 2 - get well-known Miranda IM user profile folder
+				if ( SHGetSpecialFolderPath( NULL, szProfileDir, CSIDL_APPDATA, FALSE ) ) {
+					_tcscat_s(szProfileDir, _T("\\Miranda"));
+					FindAdd(hdlg, szProfileDir, _T("[app]\\"));
+				}
+
 				// select
+				int i = 0;
 				if ( opts.filename[0] )
 					i = AddDatabaseToList( GetDlgItem( hdlg, IDC_DBLIST ), opts.filename, _T("") );
 				if ( i == -1 )

@@ -1,6 +1,6 @@
 /*
 Miranda Database Tool
-Copyright 2000-2011 Miranda ICQ/IM project, 
+Copyright 2000-2014 Miranda IM project, 
 all portions of this codebase are copyrighted to the people 
 listed in contributors.txt.
 
@@ -23,6 +23,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 	#define _UNICODE
 #endif
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <tchar.h>
 
 #include <windows.h>
@@ -35,6 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <malloc.h>
 #include <commctrl.h>
 #include <time.h>
+#include <shlobj.h>
 
 //#include <newpluginapi.h> // Only needed to keep m_database.h happy
 #define CallService(a,b,c) 1
@@ -65,6 +68,16 @@ struct DbToolOptions {
 	int bCheckOnly,bBackup,bAggressive;
 	int bEraseHistory,bMarkRead,bConvertUtf;
 };
+
+struct PathList {
+	PathList* pNext;
+	TCHAR szPath[ MAX_PATH ];
+};
+
+void AddPathList(PathList** ppList, LPCTSTR szPath);
+void FreePathList(PathList* pList);
+bool IsMirandaPath(LPCTSTR szPath);
+PathList* GetMirandaPath();
 
 extern HINSTANCE hInst;
 extern DbToolOptions opts;
@@ -102,7 +115,7 @@ int PeekSegment(DWORD ofs,PVOID buf,int cbBytes);
 int ReadSegment(DWORD ofs,PVOID buf,int cbBytes);
 #define WSOFS_END   0xFFFFFFFF
 #define WS_ERROR    0xFFFFFFFF
-DWORD WriteSegment(DWORD ofs,PVOID buf,int cbBytes);
+DWORD WriteSegment(DWORD ofs,const PVOID buf,int cbBytes);
 int ReadWrittenSegment(DWORD ofs,PVOID buf,int cbBytes);
 int SignatureValid(DWORD ofs,DWORD signature);
 DWORD ConvertModuleNameOfs(DWORD ofsOld);
@@ -113,7 +126,7 @@ void LoadLangPackModule(void);
 void UnloadLangPackModule(void);
 
 char* LangPackTranslateString(const char *szEnglish, const int W);
-__inline LPSTR Translate(LPSTR source)
+__inline LPSTR Translate(LPCSTR source)
 {	return ( LPSTR )LangPackTranslateString( source, 0 );
 }
 
@@ -128,4 +141,14 @@ __inline LPSTR Translate(LPSTR source)
 char* Utf8DecodeCP(char* str, int codepage, wchar_t** ucs2);
 char* Utf8EncodeUcs2(const wchar_t* src);
 bool is_utf8_string(const char* str);
+
+#if defined _M_IX86
+#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#elif defined _M_IA64
+#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='ia64' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#elif defined _M_X64
+#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#else
+#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#endif
 
