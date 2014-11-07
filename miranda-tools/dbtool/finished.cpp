@@ -1,6 +1,8 @@
 /*
 Miranda Database Tool
-Copyright (C) 2001-2005  Richard Hughes
+Copyright 2000-2014 Miranda IM project, 
+all portions of this codebase are copyrighted to the people 
+listed in contributors.txt.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -54,16 +56,23 @@ INT_PTR CALLBACK FinishedDlgProc(HWND hdlg,UINT message,WPARAM wParam,LPARAM lPa
 				str2 = _tcsrchr( dbFile, '.' );
 				if ( str2 != NULL )
 					*str2 = 0;
-				_tcscat( dbPath, _T("\\miranda32.exe"));
-				if ( GetFileAttributes( dbPath ) == INVALID_FILE_ATTRIBUTES ) {
-					GetModuleFileName( NULL, dbPath, SIZEOF( dbPath ));
-					if (( str2 = _tcsrchr( dbPath, '\\' )) != NULL )
-						*str2 = 0;
-					else
-						dbPath[0] = 0;
-					_tcscat( dbPath, _T("\\miranda32.exe"));
+
+				TCHAR szMirandaPath[ MAX_PATH ] = {};
+				PathList* pMirandaPath = GetMirandaPath();
+				for ( PathList* pPath = pMirandaPath; pPath; pPath = pPath->pNext ) {
+					_tcscpy_s( szMirandaPath, pPath->szPath );
+					size_t nLen = _tcslen( szMirandaPath );
+					_tcscpy_s( szMirandaPath + nLen, SIZEOF(szMirandaPath) - nLen, _T("\\miranda64.exe"));
+					if ( GetFileAttributes( szMirandaPath ) != INVALID_FILE_ATTRIBUTES )
+						break;
+					_tcscpy_s( szMirandaPath + nLen, SIZEOF(szMirandaPath) - nLen, _T( "\\miranda32.exe" ) );
+					if ( GetFileAttributes( szMirandaPath ) != INVALID_FILE_ATTRIBUTES )
+						break;
+					*szMirandaPath = 0;
 				}
-				ShellExecute( hdlg, NULL, dbPath, dbFile, _T(""), 0 );
+				FreePathList( pMirandaPath );
+				if ( *szMirandaPath )
+					ShellExecute( hdlg, NULL, szMirandaPath, dbFile, _T(""), 0 );
 			}
 			break;
 		case WZN_CANCELCLICKED:

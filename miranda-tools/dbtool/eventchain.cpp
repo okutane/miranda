@@ -1,8 +1,6 @@
 /*
 Miranda Database Tool
-Miranda IM: the free IM client for Microsoft* Windows*
-
-Copyright 2000-2011 Miranda ICQ/IM project, 
+Copyright 2000-2014 Miranda IM project, 
 all portions of this codebase are copyrighted to the people 
 listed in contributors.txt.
 
@@ -248,8 +246,8 @@ int WorkEventChain(DWORD ofsContact,DBContact *dbc,int firstTime)
 	else if ( !firstTime && dbeNew->timestamp < lastTimestamp ) 
 	{
 	    DWORD found = 0;
-		DBEvent dbeTmp;
-		DWORD ofsTmp;
+		DBEvent dbeTmp = {};
+		DWORD ofsTmp = 0;
 
 		if (opts.bCheckOnly)
 		{

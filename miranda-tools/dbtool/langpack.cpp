@@ -1,8 +1,6 @@
 /*
-
-Miranda IM: the free IM client for Microsoft* Windows*
-
-Copyright 2000-2011 Miranda ICQ/IM project, 
+Miranda Database Tool
+Copyright 2000-2014 Miranda IM project, 
 all portions of this codebase are copyrighted to the people 
 listed in contributors.txt.
 
@@ -58,7 +56,7 @@ static void TrimStringSimple(char *str)
 	if (str[len-1] == '\r') str[len-1] = '\0';
 }
 
-static int IsEmpty(char *str)
+static int IsEmpty(const char *str)
 {
 	int i = 0;
 
@@ -162,7 +160,7 @@ __inline unsigned int hashstr(const char * key)
 #pragma optimize( "", on )
 #endif
 
-static int SortLangPackHashesProc(struct LangPackEntry *arg1,struct LangPackEntry *arg2)
+static int SortLangPackHashesProc(const struct LangPackEntry *arg1, const struct LangPackEntry *arg2)
 {
 	if(arg1->englishHash<arg2->englishHash) return -1;
 	if(arg1->englishHash>arg2->englishHash) return 1;
@@ -174,7 +172,7 @@ static int SortLangPackHashesProc(struct LangPackEntry *arg1,struct LangPackEntr
 }
 
 
-static int SortLangPackHashesProc2(struct LangPackEntry *arg1,struct LangPackEntry *arg2)
+static int SortLangPackHashesProc2(const struct LangPackEntry *arg1, const struct LangPackEntry *arg2)
 {
 	if(arg1->englishHash<arg2->englishHash) return -1;
 	if(arg1->englishHash>arg2->englishHash) return 1;
@@ -333,11 +331,9 @@ static void TranslateWindow( HWND hwnd )
 			SetWindowText(hwnd, result );
 }	}
 
-static BOOL CALLBACK TranslateDialogEnumProc(HWND hwnd,LPARAM lParam)
+static BOOL CALLBACK TranslateDialogEnumProc(HWND hwnd,LPARAM /*lParam*/)
 {
 	TCHAR szClass[32];
-	int id = GetDlgCtrlID( hwnd );
-
 	GetClassName(hwnd,szClass,SIZEOF(szClass));
 	if(!lstrcmpi(szClass,_T("static")) || !lstrcmpi(szClass,_T("hyperlink")) || !lstrcmpi(szClass,_T("button")) || !lstrcmpi(szClass,_T("MButtonClass")))
 		TranslateWindow(hwnd);
