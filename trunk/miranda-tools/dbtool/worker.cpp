@@ -1,6 +1,8 @@
 /*
 Miranda Database Tool
-Copyright (C) 2001-2005  Richard Hughes
+Copyright 2000-2014 Miranda IM project, 
+all portions of this codebase are copyrighted to the people 
+listed in contributors.txt.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -36,7 +38,7 @@ DWORD spaceUsed, sp;
 static int (*Workers[6])(int)=
 	{WorkInitialChecks,WorkModuleChain,WorkUser,WorkContactChain,WorkAggressive,WorkFinalTasks};
 
-void __cdecl WorkerThread(void *unused)
+void __cdecl WorkerThread(void* /*unused*/)
 {
 	int task,ret,firstTime;
 	ts=time(NULL);

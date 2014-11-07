@@ -1,6 +1,6 @@
 /*
 Miranda Database Tool
-Copyright 2000-2011 Miranda ICQ/IM project, 
+Copyright 2000-2014 Miranda IM project, 
 all portions of this codebase are copyrighted to the people 
 listed in contributors.txt.
 
@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 static HFONT hBoldFont=NULL;
 static HENHMETAFILE hEmfHeaderLogo=NULL;
 
-static BOOL CALLBACK MyControlsEnumChildren(HWND hwnd,LPARAM lParam)
+static BOOL CALLBACK MyControlsEnumChildren(HWND hwnd,LPARAM /*lParam*/)
 {
 	DWORD style=GetWindowLong(hwnd,GWL_STYLE);
 	DWORD exstyle=GetWindowLong(hwnd,GWL_EXSTYLE);
