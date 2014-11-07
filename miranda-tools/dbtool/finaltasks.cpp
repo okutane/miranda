@@ -1,6 +1,8 @@
 /*
 Miranda Database Tool
-Copyright (C) 2001-2005  Richard Hughes
+Copyright 2000-2014 Miranda IM project, 
+all portions of this codebase are copyrighted to the people 
+listed in contributors.txt.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -20,7 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 extern int errorCount;
 
-int WorkFinalTasks(int firstTime)
+int WorkFinalTasks(int /*firstTime*/)
 {
 	FreeModuleChain();
 	AddToStatus(STATUS_MESSAGE,TranslateT("Processing final tasks"));
