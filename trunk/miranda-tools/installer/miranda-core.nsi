@@ -289,7 +289,7 @@ Section "${MIM_NAME}"
   ; Run redistributable
   ${If} $INST_UPGRADE = 0
 	${If} $INST_MODE = 0
-	  File "MIM_BUILD_SRC\bin9\contrib\vcredist_x86.exe"
+	  File "${MIM_BUILD_SRC}\bin9\contrib\vcredist_x86.exe"
 	  ExecWait '"$INSTDIR\vcredist_x86" /q'
 	  Delete "$INSTDIR\vcredist_x86.exe"
 	${EndIf}
