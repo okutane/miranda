@@ -3,6 +3,15 @@
                            www.miranda-im.org
 
 
+* New in 0.10.25
+Bugfixes:
+ - Fix DBTool profile identification
+ - MSN: Fix MSN login identification
+
+Enhancements:
+ - Switch to newer compiler which requires an included redistributable package
+
+ 
 * New in 0.10.24
 Bugfixes:
  - Installer fixes (more internal NSIS updates)
