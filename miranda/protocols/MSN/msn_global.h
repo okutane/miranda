@@ -791,9 +791,9 @@ struct TWinErrorCode
 
 const char msnProtChallenge[] = "C1BX{V4W}Q3*10SM";
 const char msnProductID[] = "PROD0120PW!CCV9@";
-const char msnAppID[] = "AAD9B99B-58E6-4F23-B975-D9EC1F9EC24A";
-const char msnStoreAppId[] = "Messenger Client 9.0";
-const char msnProductVer[] = "14.0.8117.0416";
+const char msnAppID[] = "484AAC02-7F59-41B7-9601-772045DCC569";
+const char msnStoreAppId[] = "Windows Live Messenger 2012";
+const char msnProductVer[] = "16.4.3528";
 const char msnProtID[] = "MSNP18";
 
 extern	HINSTANCE	hInst;
