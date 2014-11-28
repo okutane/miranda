@@ -3,6 +3,11 @@
                            www.miranda-im.org
 
 
+* New in 0.10.26
+Bugfixes:
+ - Fix redistributable language for x86
+
+ 
 * New in 0.10.25
 Bugfixes:
  - Fix DBTool profile identification
