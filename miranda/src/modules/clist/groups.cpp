@@ -2,7 +2,7 @@
 
 Miranda IM: the free IM client for Microsoft* Windows*
 
-Copyright 2000-2009 Miranda ICQ/IM project,
+Copyright 2000-2014 Miranda ICQ/IM project,
 all portions of this codebase are copyrighted to the people
 listed in contributors.txt.
 
@@ -62,6 +62,14 @@ static int GroupNameExists(const TCHAR *name, int skipGroup)
 		DBFreeVariant(&dbv);
 	}
 	return 0;
+}
+
+static INT_PTR GroupExists(WPARAM, LPARAM lParam)
+{
+	if (lParam == 0)
+		return FALSE;
+
+	return GroupNameExists((LPCTSTR)lParam, -1);
 }
 
 static INT_PTR CreateGroup(WPARAM wParam, LPARAM lParam)
@@ -561,6 +569,7 @@ int InitGroupServices(void)
 		DBFreeVariant(&dbv);
 	}
 
+	CreateServiceFunction(MS_CLIST_GROUPEXISTS, GroupExists);
 	CreateServiceFunction(MS_CLIST_GROUPCREATE, CreateGroup);
 	CreateServiceFunction(MS_CLIST_GROUPDELETE, DeleteGroup);
 	CreateServiceFunction(MS_CLIST_GROUPRENAME, RenameGroup);

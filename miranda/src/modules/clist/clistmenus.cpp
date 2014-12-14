@@ -389,7 +389,7 @@ INT_PTR ContactMenuCheckService(WPARAM wParam,LPARAM)
 	PCheckProcParam pcpp = ( PCheckProcParam )wParam;
 	BuildContactParam *bcp=NULL;
 	lpContactMenuExecParam cmep=NULL;
-	TMO_MenuItem mi;
+	TMO_MenuItem tmi = { sizeof( tmi ) };
 
 	if ( pcpp == NULL )
 		return FALSE;
@@ -406,12 +406,12 @@ INT_PTR ContactMenuCheckService(WPARAM wParam,LPARAM)
 		if ( bcp->szProto == NULL ) return FALSE;
 		if ( strcmp( cmep->pszContactOwner, bcp->szProto )) return FALSE;
 	}
-	if ( MO_GetMenuItem(( WPARAM )pcpp->MenuItemHandle, ( LPARAM )&mi ) == 0 ) {
-		if ( mi.flags & CMIF_HIDDEN ) return FALSE;
-		if ( mi.flags & CMIF_NOTONLIST  && bcp->isOnList  ) return FALSE;
-		if ( mi.flags & CMIF_NOTOFFLIST && !bcp->isOnList ) return FALSE;
-		if ( mi.flags & CMIF_NOTONLINE  && bcp->isOnline  ) return FALSE;
-		if ( mi.flags & CMIF_NOTOFFLINE && !bcp->isOnline ) return FALSE;
+	if ( MO_GetMenuItem(( WPARAM )pcpp->MenuItemHandle, ( LPARAM )&tmi ) == 0 ) {
+		if ( tmi.flags & CMIF_HIDDEN ) return FALSE;
+		if ( tmi.flags & CMIF_NOTONLIST  && bcp->isOnList  ) return FALSE;
+		if ( tmi.flags & CMIF_NOTOFFLIST && !bcp->isOnList ) return FALSE;
+		if ( tmi.flags & CMIF_NOTONLINE  && bcp->isOnline  ) return FALSE;
+		if ( tmi.flags & CMIF_NOTOFFLINE && !bcp->isOnline ) return FALSE;
 	}
 	return TRUE;
 }
@@ -682,18 +682,33 @@ INT_PTR FreeOwnerDataStatusMenu(WPARAM, LPARAM lParam)
 /////////////////////////////////////////////////////////////////////////////////////////
 // Other menu functions
 
+static INT_PTR ShowHideMenuItem(WPARAM wParam, LPARAM lParam)
+{
+	PMO_IntMenuItem pimi = MO_GetIntMenuItem( (HGENMENU)wParam );
+	if ( pimi == NULL )
+		return 1;
+
+	TMO_MenuItem tmi = { sizeof( tmi ) };
+	tmi.flags = CMIM_FLAGS + pimi->mi.flags;
+	if ( lParam )
+		tmi.flags &= ~CMIF_HIDDEN;
+	else
+		tmi.flags |= CMIF_HIDDEN;
+
+	return MO_ModifyMenuItem(( PMO_IntMenuItem )wParam, &tmi );
+}
+
 //wparam MenuItemHandle
 static INT_PTR ModifyCustomMenuItem(WPARAM wParam,LPARAM lParam)
 {
 	CLISTMENUITEM *mi=(CLISTMENUITEM*)lParam;
-	TMO_MenuItem tmi;
 
 	if ( lParam == 0 )
 		return -1;
 	if ( mi->cbSize != sizeof( CLISTMENUITEM ))
 		return 1;
 
-	tmi.cbSize = sizeof(tmi);
+	TMO_MenuItem tmi = { sizeof( tmi ) };
 	tmi.flags = mi->flags;
 	tmi.hIcon = mi->hIcon;
 	tmi.hotKey = mi->hotKey;
@@ -1104,7 +1119,6 @@ static int MenuProtoAck(WPARAM, LPARAM lParam)
 	int i;
 	ACKDATA* ack=(ACKDATA*)lParam;
 	int overallStatus;
-	TMO_MenuItem tmi;
 
 	if ( ack->type != ACKTYPE_STATUS ) return 0;
 	if ( ack->result != ACKRESULT_SUCCESS ) return 0;
@@ -1114,8 +1128,7 @@ static int MenuProtoAck(WPARAM, LPARAM lParam)
 
     overallStatus = GetAverageMode();
 
-	memset(&tmi,0,sizeof(tmi));
-	tmi.cbSize=sizeof(tmi);
+	TMO_MenuItem tmi = { sizeof( tmi ) };
 	if (overallStatus >= ID_STATUS_OFFLINE) {
 		int pos = statustopos(cli.currentStatusMenuItem);
 		if (pos==-1) pos=0;
@@ -1329,6 +1342,7 @@ void InitCustomMenus(void)
 	CreateServiceFunction(MS_CLIST_MENUBUILDCONTACT,BuildContactMenu);
 	CreateServiceFunction(MS_CLIST_REMOVECONTACTMENUITEM,RemoveContactMenuItem);
 
+	CreateServiceFunction(MS_CLIST_SHOWHIDEMENUITEM,ShowHideMenuItem);
 	CreateServiceFunction(MS_CLIST_MODIFYMENUITEM,ModifyCustomMenuItem);
 	CreateServiceFunction(MS_CLIST_MENUMEASUREITEM,MeasureMenuItem);
 	CreateServiceFunction(MS_CLIST_MENUDRAWITEM,DrawMenuItem);

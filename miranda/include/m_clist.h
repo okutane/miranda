@@ -2,7 +2,7 @@
 
 Miranda IM: the free IM client for Microsoft* Windows*
 
-Copyright 2000-2008 Miranda ICQ/IM project,
+Copyright 2000-2014 Miranda ICQ/IM project,
 all portions of this codebase are copyrighted to the people
 listed in contributors.txt.
 
@@ -168,6 +168,12 @@ typedef struct {
 #define CMIM_HOTKEY   0x10000000
 #define CMIM_ALL      0xF0000000
 #define MS_CLIST_MODIFYMENUITEM         "CList/ModifyMenuItem"
+
+
+//changes menu item's visibility     v0.10.26+
+//wParam=(WPARAM)(HGENMENU)hMenuItem
+//lParam=(BOOL) enable = TRUE, disable = FALSE
+#define MS_CLIST_SHOWHIDEMENUITEM       "CList/ShowHideMenuItem"
 
 //the context menu for a contact is about to be built     v0.1.0.1+
 //wParam=(WPARAM)(HANDLE)hContact
@@ -451,6 +457,12 @@ typedef struct {
 } CLISTGROUPCHANGE;
 
 #define ME_CLIST_GROUPCHANGE       "CList/GroupChange"
+
+//checks that a group exists                                v0.10.26+
+//wParam=0 (unused)
+//lParam=(TCHAR*)groupName
+//returns 0 if a group is not found or group handle on success
+#define MS_CLIST_GROUPEXISTS       "CList/GroupExists"
 
 //creates a new group and calls CLUI to display it          v0.1.1.0+
 //wParam=hParentGroup
