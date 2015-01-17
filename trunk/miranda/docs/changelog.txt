@@ -3,6 +3,12 @@
                            www.miranda-im.org
 
 
+* New in 0.10.28
+Bugfixes:
+ - Minor bug fixes
+ - Minor translation fixes
+
+
 * New in 0.10.27
 Enhancements:
  - Improved contact list SDK support
