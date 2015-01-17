@@ -63,7 +63,7 @@ PLUGININFOEX pluginInfo = {
 	"Provides chat rooms for protocols supporting it",
 	"Miranda IM",
 	"noreply@miranda-im.org",
-	"Copyright © 2000-2014 Miranda IM Project",
+	"Copyright © 2000-2015 Miranda IM Project",
 	"http://www.miranda-im.org",
 	UNICODE_AWARE,
 	0,

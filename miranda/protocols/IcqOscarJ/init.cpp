@@ -5,7 +5,7 @@
 // Copyright © 2000-2001 Richard Hughes, Roland Rabien, Tristan Van de Vreede
 // Copyright © 2001-2002 Jon Keating, Richard Hughes
 // Copyright © 2002-2004 Martin Öberg, Sam Kothari, Robert Rainwater
-// Copyright © 2004-2014 Joe Kucera
+// Copyright © 2004-2015 Joe Kucera
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -59,7 +59,7 @@ PLUGININFOEX pluginInfo = {
 	"Support for ICQ network, enhanced.",
 	"Miranda IM",
 	"noreply@miranda-im.org",
-	"Copyright © 2000-2014 Miranda IM Project",
+	"Copyright © 2000-2015 Miranda IM Project",
 	"http://www.miranda-im.org",
 	UNICODE_AWARE,
 	0,   //doesn't replace anything built-in
