@@ -4,7 +4,7 @@
  *
  * Miranda IM: the free IM client for Microsoft* Windows*
  *
- * Copyright 2000-2009 Miranda ICQ/IM project,
+ * Copyright 2000-2015 Miranda ICQ/IM project,
  * all portions of this codebase are copyrighted to the people
  * listed in contributors.txt.
  *
@@ -24,7 +24,7 @@
  *
  * part of tabSRMM messaging plugin for Miranda.
  *
- * (C) 2005-2014 by silvercircle _at_ gmail _dot_ com and contributors
+ * (C) 2005-2015 by silvercircle _at_ gmail _dot_ com and contributors
  *
  * $Id$
  *
