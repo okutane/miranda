@@ -3,8 +3,6 @@
 !include "WinVer.nsh"
 !include "LogicLib.nsh"
 
-!include "miranda-version.nsi"
-
 !define MIM_NAME                "Miranda IM"
 !define MIM_URL                 "http://www.miranda-im.org/"
 !define MIM_PUBLISHER           "${MIM_NAME} Project"
@@ -19,13 +17,20 @@
 !ifdef MIM_BUILD_UNICODE
 !define MIM_BUILD_TYPE          "unicode"
 !define MIM_BUILD_SUFFIX        "Release Unicode"
+!else ifdef MIM_BUILD_X64
+!define MIM_BUILD_TYPE          "x64"
+!define MIM_BUILD_SUFFIX        "Release Unicode64"
 !else
 !define MIM_BUILD_TYPE          "ansi"
 !define MIM_BUILD_SUFFIX        "Release"
 !endif
 !define MIM_BUILD_SRC           "..\..\miranda"
 
+!ifdef MIM_BUILD_X64
+!define MIM_BUILD_EXE           "miranda64.exe"
+!else
 !define MIM_BUILD_EXE           "miranda32.exe"
+!endif
 
 !if /FileExists "${MIM_BUILD_SRC}\bin9\${MIM_BUILD_SUFFIX}\${MIM_BUILD_EXE}"
   !define MIM_BIN               "bin9"
@@ -36,23 +41,19 @@
 !define MIM_BUILD_DIR           "${MIM_BUILD_SRC}\${MIM_BIN}\${MIM_BUILD_SUFFIX}"
 !define MIM_BUILD_DIRANSI       "${MIM_BUILD_SRC}\${MIM_BIN}\Release"
 
+!ifdef MIM_BUILD_X64
+!define MIM_BUILD_VCREDIST      "vcredist_x64.exe"
+!else
 !define MIM_BUILD_VCREDIST      "vcredist_x86.exe"
+!endif
 !define MIM_BUILD_VCREDIST_DIR  "${MIM_BUILD_SRC}\${MIM_BIN}\contrib"
 
 !getdllversion                  "${MIM_BUILD_DIR}\${MIM_BUILD_EXE}" VER_
 !define MIM_VERSION             "${VER_1}.${VER_2}.${VER_3}"
 
-!if  ${MIM_BETA} != 0
-Name                            "${MIM_NAME} ${MIM_VERSION} Beta ${MIM_BETA}"
-!if ${MIM_BUILD_TYPE} = "unicode"
-OutFile                         "${MIM_BUILD_SRC}\${MIM_BIN}\miranda-im-v${MIM_VERSION}b${MIM_BETA}w.exe"
-!else
-OutFile                         "${MIM_BUILD_SRC}\${MIM_BIN}\miranda-im-v${MIM_VERSION}b${MIM_BETA}.exe"
-!endif
-!else
 Name                            "${MIM_NAME} ${MIM_VERSION}"
-OutFile                         "${MIM_BUILD_SRC}\${MIM_BIN}\miranda-im-v${MIM_VERSION}-${MIM_BUILD_TYPE}.exe"
-!endif
+OutFile                         "${MIM_BUILD_SRC}\bin\miranda-im-v${MIM_VERSION}-${MIM_BUILD_TYPE}.exe"
+
 
 InstallDir                      "$PROGRAMFILES\${MIM_NAME}"
 InstallDirRegKey                HKLM "Software\Microsoft\Windows\CurrentVersion\App Paths\${MIM_BUILD_EXE}" "Path"
@@ -85,7 +86,11 @@ VAR INST_WARN
 !define MUI_COMPONENTSPAGE_NODESC
 !define MUI_LICENSEPAGE_BGCOLOR /grey
 !define MUI_FINISHPAGE_RUN $INSTDIR\${MIM_BUILD_EXE}
+!ifdef MIM_BUILD_X64
+!define MUI_FINISHPAGE_RUN_TEXT "Start ${MIM_NAME} (x64)"
+!else
 !define MUI_FINISHPAGE_RUN_TEXT "Start ${MIM_NAME}"
+!endif
 
 !insertmacro MUI_PAGE_LICENSE "${MIM_BUILD_SRC}\docs\license.txt"
 Page Custom CustomInstallPage CustomInstallPageLeave
@@ -126,7 +131,7 @@ LangString CLOSE_WARN ${LANG_ENGLISH}     "${MIM_NAME} is currently running.  Pl
 !macro InstallMirandaProtoIcon IconFile
   SetOutPath "$INSTDIR\Icons"
   SetOverWrite off
-  !ifdef MIM_BUILD_UNICODE
+  !ifdef MIM_BUILD_UNICODE || MIM_BUILD_X64
   ${If} ${AtLeastWinXP}
     File "${MIM_BUILD_ICONS_HI}\proto_${IconFile}.dll"
   ${Else}
@@ -176,7 +181,7 @@ Section "${MIM_NAME}"
   File "${MIM_BUILD_SRC}\docs\changelog.txt"
   File "${MIM_BUILD_SRC}\docs\license.txt"
   
-  !ifdef MIM_BUILD_UNICODE
+  !ifdef MIM_BUILD_UNICODE || MIM_BUILD_X64
   ${If} $INST_MODE = 0
     ${If} $INST_UPGRADE = 1
       ${If} ${FileExists} "$INSTDIR\mirandaboot.ini"
@@ -199,7 +204,7 @@ Section "${MIM_NAME}"
   ${If} ${FileExists} "$INSTDIR\mirandaboot.ini"
     ${If} $INST_UPGRADE = 0
       ${If} $INST_MODE = 0
-	    !ifdef MIM_BUILD_UNICODE
+	    !ifdef MIM_BUILD_UNICODE || MIM_BUILD_X64
           WriteINIStr "$INSTDIR\mirandaboot.ini" "Database" "ProfileDir" "%APPDATA%\Miranda"
 		!endif
   	  ${ElseIf} $INST_MODE = 1
@@ -213,7 +218,7 @@ Section "${MIM_NAME}"
   !insertmacro InstallMirandaPlugin "srmm.dll"
   !insertmacro InstallMirandaPlugin "avs.dll"
   !insertmacro InstallMirandaPlugin "advaimg.dll"
-  !ifdef MIM_BUILD_UNICODE
+  !ifdef MIM_BUILD_UNICODE || MIM_BUILD_X64
   !insertmacro InstallMirandaPlugin "dbx_mmap.dll"
   Delete "$INSTDIR\Plugins\dbx_3x.dll"
   !else
@@ -235,7 +240,7 @@ Section "${MIM_NAME}"
   ${If} ${FileExists} "$INSTDIR\Plugins\scriver.dll"
     !insertmacro InstallMirandaPlugin "scriver.dll"
   ${EndIf}
-  !ifdef MIM_BUILD_UNICODE
+  !ifdef MIM_BUILD_UNICODE || MIM_BUILD_X64
   ${If} ${FileExists} "$INSTDIR\Plugins\tabsrmm.dll"
     !insertmacro InstallMirandaPlugin "tabsrmm.dll"
     SetOutPath "$INSTDIR\Icons"
