@@ -18,26 +18,40 @@
 
 !ifdef MIM_BUILD_UNICODE
 !define MIM_BUILD_TYPE          "unicode"
-!define MIM_BUILD_DIR           "..\..\miranda\bin9\Release Unicode"
+!define MIM_BUILD_SUFFIX        "Release Unicode"
 !else
 !define MIM_BUILD_TYPE          "ansi"
-!define MIM_BUILD_DIR           "..\..\miranda\bin9\Release"
+!define MIM_BUILD_SUFFIX        "Release"
 !endif
-!define MIM_BUILD_DIRANSI       "..\..\miranda\bin9\Release"
 !define MIM_BUILD_SRC           "..\..\miranda"
 
 !define MIM_BUILD_EXE           "miranda32.exe"
 
+!if /FileExists "${MIM_BUILD_SRC}\bin9\${MIM_BUILD_SUFFIX}\${MIM_BUILD_EXE}"
+  !define MIM_BIN               "bin9"
+!else
+  !error "File '${MIM_BUILD_EXE}' not found!"
+!endif
+
+!define MIM_BUILD_DIR           "${MIM_BUILD_SRC}\${MIM_BIN}\${MIM_BUILD_SUFFIX}"
+!define MIM_BUILD_DIRANSI       "${MIM_BUILD_SRC}\${MIM_BIN}\Release"
+
+!define MIM_BUILD_VCREDIST      "vcredist_x86.exe"
+!define MIM_BUILD_VCREDIST_DIR  "${MIM_BUILD_SRC}\${MIM_BIN}\contrib"
+
+!getdllversion                  "${MIM_BUILD_DIR}\${MIM_BUILD_EXE}" VER_
+!define MIM_VERSION             "${VER_1}.${VER_2}.${VER_3}"
+
 !if  ${MIM_BETA} != 0
 Name                            "${MIM_NAME} ${MIM_VERSION} Beta ${MIM_BETA}"
 !if ${MIM_BUILD_TYPE} = "unicode"
-OutFile                         "..\..\miranda\bin\miranda-im-v${MIM_VERSION}b${MIM_BETA}w.exe"
+OutFile                         "${MIM_BUILD_SRC}\${MIM_BIN}\miranda-im-v${MIM_VERSION}b${MIM_BETA}w.exe"
 !else
-OutFile                         "..\..\miranda\bin\miranda-im-v${MIM_VERSION}b${MIM_BETA}.exe"
+OutFile                         "${MIM_BUILD_SRC}\${MIM_BIN}\miranda-im-v${MIM_VERSION}b${MIM_BETA}.exe"
 !endif
 !else
 Name                            "${MIM_NAME} ${MIM_VERSION}"
-OutFile                         "..\..\miranda\bin\miranda-im-v${MIM_VERSION}-${MIM_BUILD_TYPE}.exe"
+OutFile                         "${MIM_BUILD_SRC}\${MIM_BIN}\miranda-im-v${MIM_VERSION}-${MIM_BUILD_TYPE}.exe"
 !endif
 
 InstallDir                      "$PROGRAMFILES\${MIM_NAME}"
@@ -126,7 +140,13 @@ LangString CLOSE_WARN ${LANG_ENGLISH}     "${MIM_NAME} is currently running.  Pl
 
 !macro InstallMirandaPlugin PluginFile
   SetOutPath "$INSTDIR\Plugins"
-  File "${MIM_BUILD_DIR}\plugins\${PluginFile}"
+  !if /FileExists "${MIM_BUILD_DIR}\plugins\${PluginFile}"
+    File "${MIM_BUILD_DIR}\plugins\${PluginFile}"
+  !else if /FileExists "${MIM_BUILD_DIRANSI}\plugins\${PluginFile}"
+    File "${MIM_BUILD_DIRANSI}\plugins\${PluginFile}"
+  !else
+    !error "File ${PluginFile} not found!"
+  !endif
 !macroend
 
 !macro WriteInstallerOption IniOption IniValue
@@ -287,12 +307,11 @@ Section "${MIM_NAME}"
   ${EndIf}
   
   ; Run redistributable
-  ${If} $INST_UPGRADE = 0
-	${If} $INST_MODE = 0
-	  File "${MIM_BUILD_SRC}\bin9\contrib\vcredist_x86.exe"
-	  ExecWait '"$INSTDIR\vcredist_x86" /q'
-	  Delete "$INSTDIR\vcredist_x86.exe"
-	${EndIf}
+  ${If} $INST_MODE = 0
+    !insertmacro PrintInstallerDetails "Installing Microsoft Visual C++ Redistributable Package..."
+    File "/oname=$TEMP\${MIM_BUILD_VCREDIST}" "${MIM_BUILD_VCREDIST_DIR}\${MIM_BUILD_VCREDIST}"
+    ExecWait '"$TEMP\${MIM_BUILD_VCREDIST}" /q'
+    Delete /REBOOTOK "$TEMP\${MIM_BUILD_VCREDIST}"
   ${EndIf}
   
   ${If} $INST_MODE = 0
