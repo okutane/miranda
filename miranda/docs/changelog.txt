@@ -3,6 +3,14 @@
                            www.miranda-im.org
 
 
+* New in 0.10.29
+Enhancements:
+ - Include new installer for Miranda IM x64
+
+Bugfixes:
+ - Update redistributable on each installer to prevent misconfigurations
+
+
 * New in 0.10.28
 Bugfixes:
  - Minor bug fixes
