@@ -32,8 +32,11 @@
 !define MIM_BUILD_EXE           "miranda32.exe"
 !endif
 
-!if /FileExists "${MIM_BUILD_SRC}\bin9\${MIM_BUILD_SUFFIX}\${MIM_BUILD_EXE}"
+; Support /bin and /bin9 installer builds
+!if      /FileExists "${MIM_BUILD_SRC}\bin9\${MIM_BUILD_SUFFIX}\${MIM_BUILD_EXE}"
   !define MIM_BIN               "bin9"
+!else if /FileExists "${MIM_BUILD_SRC}\bin\${MIM_BUILD_SUFFIX}\${MIM_BUILD_EXE}"
+  !define MIM_BIN               "bin"
 !else
   !error "File '${MIM_BUILD_EXE}' not found!"
 !endif
