@@ -320,6 +320,9 @@ Section "${MIM_NAME}"
     File "/oname=$TEMP\${MIM_BUILD_VCREDIST}" "${MIM_BUILD_VCREDIST_DIR}\${MIM_BUILD_VCREDIST}"
     ExecWait '"$TEMP\${MIM_BUILD_VCREDIST}" /q'
     Delete /REBOOTOK "$TEMP\${MIM_BUILD_VCREDIST}"
+  ${Else}
+    SetOutPath "$INSTDIR\Contrib"
+	File "${MIM_BUILD_VCREDIST_DIR}\${MIM_BUILD_VCREDIST}"
   ${EndIf}
   
   ${If} $INST_MODE = 0
