@@ -302,4 +302,5 @@ rd /Q /S %Temp%\mirx64c
 
 "C:\Program Files (x86)\NSIS\makensis.exe" ../../miranda-tools/installer/miranda-install-ansi.nsi
 "C:\Program Files (x86)\NSIS\makensis.exe" ../../miranda-tools/installer/miranda-install-unicode.nsi
+"C:\Program Files (x86)\NSIS\makensis.exe" ../../miranda-tools/installer/miranda-install-x64.nsi
 
