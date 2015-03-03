@@ -3,6 +3,12 @@
                            www.miranda-im.org
 
 
+* New in 0.10.30
+Enhancements:
+ - Updated country list and ISO codes
+ - Improved SDK compatibility
+ 
+
 * New in 0.10.29
 Enhancements:
  - Include new installer for Miranda IM x64
