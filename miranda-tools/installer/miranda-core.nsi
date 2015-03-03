@@ -501,7 +501,7 @@ FunctionEnd
 
 Function CustomInstallPage
   !insertmacro MUI_HEADER_TEXT "Installation Mode" "Select install type."
-  ReserveFile "ui\miranda-ui-type.ini"
+  ReserveFile "miranda-ui-type.ini"
   !insertmacro MUI_INSTALLOPTIONS_EXTRACT "miranda-ui-type.ini"
   ${If} $INST_MODE = 0
     !insertmacro MUI_INSTALLOPTIONS_WRITE "miranda-ui-type.ini" "Field 2" "State" "1"
