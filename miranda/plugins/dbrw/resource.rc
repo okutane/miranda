@@ -15,21 +15,13 @@ BEGIN
         BLOCK "000004b0"
         BEGIN
             VALUE "Comments", "Licensed under the terms of the GNU General Public License"
-            VALUE "FileDescription", "dbRW Database Driver for Miranda IM"
-            #ifdef DBRW_VER_ALPHA
-            VALUE "FileVersion", DBRW_VER_STRING " alpha " DBRW_VER_ALPHA
-            #else
+            VALUE "FileDescription", "SQLite Driver for Miranda IM"
             VALUE "FileVersion", DBRW_VER_STRING
-            #endif
-            VALUE "InternalName", "dbRW"                               
-            VALUE "LegalCopyright", "Copyright © 2006-2007 Robert Rainwater."
-            VALUE "OriginalFilename", "dbx_rw.dll"
-            VALUE "ProductName", "dbRW"
-            #ifdef DBRW_VER_ALPHA
-            VALUE "ProductVersion", DBRW_VER_STRING " alpha " DBRW_VER_ALPHA
-            #else
+            VALUE "InternalName", "SQLite Driver"                               
+            VALUE "LegalCopyright", "Copyright © 2006-2015 Miranda IM Project."
+            VALUE "OriginalFilename", "dbx_sqlite.dll"
+            VALUE "ProductName", "SQLite Driver"
             VALUE "ProductVersion", DBRW_VER_STRING
-            #endif
         END
     END
     BLOCK "VarFileInfo"

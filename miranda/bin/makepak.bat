@@ -1,4 +1,4 @@
-set Version=0.10.30
+set Version=0.10.31
 
 set PDBVer=miranda-im-v%Version%-ansi-pdb
 set FileVer=miranda-im-v%Version%-ansi
@@ -95,6 +95,7 @@ copy ..\bin9\Release\plugins\clist_mw.dll                %Temp%\miransic\Plugins
 copy ..\bin9\Release\plugins\clist_nicer.dll             %Temp%\miransic\Plugins
 copy ..\bin9\Release\plugins\scriver.dll                 %Temp%\miransic\Plugins
 copy ..\bin9\Release\plugins\tabsrmm.dll                 %Temp%\miransic\Plugins
+copy ..\bin9\Release\plugins\dbx_sqlite.dll              %Temp%\miransic\Plugins
 
 del /Q /F "%ContribVer%.7z"
 "C:\Program Files\7-Zip\7z.exe" a -t7z -r -mx=9 "%ContribVer%.7z" %Temp%\miransic/*
@@ -197,6 +198,7 @@ copy "..\bin9\Release Unicode\plugins\clist_mw.dll"                %Temp%\mirans
 copy "..\bin9\Release Unicode\plugins\clist_nicer.dll"             %Temp%\miransicw\Plugins
 copy "..\bin9\Release Unicode\plugins\scriver.dll"                 %Temp%\miransicw\Plugins
 copy "..\bin9\Release Unicode\plugins\tabsrmm.dll"                 %Temp%\miransicw\Plugins
+copy "..\bin9\Release Unicode\plugins\dbx_sqlite.dll"                 %Temp%\miransicw\Plugins
 
 del /Q /F "%ContribVer%.7z"
 "C:\Program Files\7-Zip\7z.exe" a -t7z -r -mx=9 "%ContribVer%.7z" %Temp%\miransicw/*
@@ -295,6 +297,7 @@ copy "..\bin9\Release Unicode64\Plugins\clist_nicer.dll"              %Temp%\mir
 copy "..\bin9\Release Unicode64\Plugins\clist_modern.dll"              %Temp%\mirx64c\Plugins
 copy "..\bin9\Release Unicode64\Plugins\scriver.dll"              %Temp%\mirx64c\Plugins
 copy "..\bin9\Release Unicode64\Plugins\tabsrmm.dll"              %Temp%\mirx64c\Plugins
+copy "..\bin9\Release Unicode64\Plugins\dbx_sqlite.dll"              %Temp%\mirx64c\Plugins
 
 del /Q /F "%ContribVer%.7z"
 "C:\Program Files\7-Zip\7z.exe" a -t7z -r -mx=9 "%ContribVer%.7z" %Temp%\mirx64c/*
