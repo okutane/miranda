@@ -21,20 +21,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 PLUGININFOEX pluginInfo = {
 	sizeof(PLUGININFOEX),
-	"dbRW SQLite DB Driver",
+	"SQLite Driver (Beta)",
 	PLUGIN_MAKE_VERSION(DBRW_VER_MAJOR,DBRW_VER_MINOR,0,0),
 	#ifdef DBRW_DEBUG
-    #ifdef DBRW_VER_ALPHA
-	"Miranda IM database driver engine powered by SQLite v" SQLITE_VERSION " [Debug Build Alpha #" DBRW_VER_ALPHA "]",
-    #else
 	"Miranda IM database driver engine powered by SQLite v" SQLITE_VERSION " [Debug Build]",
-    #endif
 	#else
-    #ifdef DBRW_VER_ALPHA
-    "Miranda IM database driver engine powered by SQLite v" SQLITE_VERSION " [Alpha #" DBRW_VER_ALPHA "]",
-    #else
 	"Miranda IM database driver engine powered by SQLite v" SQLITE_VERSION,
-    #endif
 	#endif
 	"Miranda IM",
 	"noreply@miranda-im.org",
@@ -242,11 +234,7 @@ static int dbrw_Load(char *profile, void *link)
 	#ifdef DBRW_LOGGING
 	utils_log_init();
 	#endif
-    #ifdef DBRW_VER_ALPHA
-    log3("Loading dbRW v%s alpha #%s (SQLite v%s)", DBRW_VER_STRING, DBRW_VER_ALPHA, SQLITE_VERSION);
-    #else
-	log2("Loading dbRW v%s (SQLite v%s)", DBRW_VER_STRING, SQLITE_VERSION);
-    #endif
+    log2("Loading dbRW v%s (SQLite v%s)", DBRW_VER_STRING, SQLITE_VERSION);
     utils_vacuum_check();
 	{
         sql_exec(g_sqlite, "BEGIN TRANSACTION;");

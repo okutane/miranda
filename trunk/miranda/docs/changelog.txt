@@ -3,6 +3,11 @@
                            www.miranda-im.org
 
 
+* New in 0.10.31
+Enhancements:
+ - Add SQLite database driver beta to contrib package (Use at your own risk!)
+
+ 
 * New in 0.10.30
 Enhancements:
  - Updated country list and ISO codes
