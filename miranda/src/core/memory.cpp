@@ -2,7 +2,8 @@
 
 Miranda IM: the free IM client for Microsoft* Windows*
 
-Copyright 2000-2015 Miranda ICQ/IM project, 
+Copyright (c) 2000-2015 Miranda ICQ/IM project, 
+Copyright (c) 2012-2015 Miranda NG project,
 all portions of this codebase are copyrighted to the people 
 listed in contributors.txt.
 
@@ -67,21 +68,21 @@ void* mir_alloc( size_t size )
 {
 	if ( size == 0 )
 		return NULL;
-	{
-		char* p = (char*)malloc( size + sizeof(DWORD)*3 );
-		if ( p == NULL ) {
-			OutputDebugStringA( "memory overflow\n" );
-			#if defined( _DEBUG )
-				DebugBreak();
-			#endif
-			return NULL;
-		}
 
-		*( DWORD* )p = ( DWORD )size;
-		*( DWORD* )&p[ sizeof(DWORD) ] = BLOCK_ALLOCED;
-		*( DWORD* )&p[ size + sizeof(DWORD)*2 ] = BLOCK_ALLOCED;
-		return p + sizeof( DWORD )*2;
-}	}
+	char* p = (char*)malloc( size + sizeof(DWORD)*3 );
+	if ( p == NULL ) {
+		OutputDebugStringA( "memory overflow\n" );
+		#if defined( _DEBUG )
+			DebugBreak();
+		#endif
+		return NULL;
+	}
+
+	*( DWORD* )p = ( DWORD )size;
+	*( DWORD* )&p[ sizeof(DWORD) ] = BLOCK_ALLOCED;
+	*( DWORD* )&p[ size + sizeof(DWORD)*2 ] = BLOCK_ALLOCED;
+	return p + sizeof( DWORD )*2;
+}
 
 /******************************************************************************/
 
@@ -135,6 +136,7 @@ void mir_free( void* ptr )
 
 	p = ( char* )ptr - sizeof(DWORD)*2;
 	size = *( DWORD* )p;
+
 	*( DWORD* )&p[ sizeof(DWORD) ] = BLOCK_FREED;
 	*( DWORD* )&p[ size + sizeof(DWORD)*2 ] = BLOCK_FREED;
 	free( p );
@@ -144,41 +146,52 @@ void mir_free( void* ptr )
 
 char* mir_strdup( const char* str )
 {
-	if ( str != NULL ) {
-		char* p = ( char* )mir_alloc( strlen( str )+1 );
-		if ( p )
-			strcpy( p, str );
-		return p;
-	}
-	return NULL;
+	if (str == NULL)
+		return NULL;
+
+	char* p = ( char* )mir_alloc( strlen( str )+1 );
+	if ( p )
+		strcpy( p, str );
+	return p;
+}
+
+WCHAR* mir_wstrdup( const WCHAR* str )
+{
+	if (str == NULL)
+		return NULL;
+
+	WCHAR* p = ( WCHAR* )mir_alloc( sizeof( WCHAR )*( wcslen( str )+1 ));
+	if ( p )
+		wcscpy( p, str );
+	return p;
 }
 
 /******************************************************************************/
 
 char* mir_strndup( const char* str, size_t len )
 {
-	if ( str != NULL && len != 0 ) {
-		char* p = ( char* )mir_alloc( len + 1 );
-		if ( !p ) {
-			memcpy( p, str, len );
-			p[ len ] = 0;
-		}
-		return p;
+	if (str == NULL || len == 0)
+		return NULL;
+
+	char* p = ( char* )mir_alloc( len + 1 );
+	if ( p ) {
+		memcpy( p, str, len );
+		p[ len ] = 0;
 	}
-	return NULL;
+	return p;
 }
 
-/******************************************************************************/
-
-WCHAR* mir_wstrdup( const WCHAR* str )
+WCHAR* mir_wstrndup( const WCHAR *str, size_t len )
 {
-	if ( str != NULL ) {
-		WCHAR* p = ( WCHAR* )mir_alloc( sizeof( WCHAR )*( wcslen( str )+1 ));
-		if ( p )
-			wcscpy( p, str );
-		return p;
+	if ( str == NULL || len == 0 )
+		return NULL;
+
+	WCHAR *p = (WCHAR*)mir_alloc( sizeof( WCHAR )*( len + 1 ) );
+	if ( p ) {
+		memcpy( p, str, sizeof( WCHAR )*len );
+		p[ len ] = 0;
 	}
-	return NULL;
+	return p;
 }
 
 /******************************************************************************/
@@ -186,10 +199,8 @@ WCHAR* mir_wstrdup( const WCHAR* str )
 int mir_snprintf(char *buffer, size_t count, const char* fmt, ...)
 {
 	va_list va;
-	int len;
-
 	va_start(va, fmt);
-	len = _vsnprintf(buffer, count-1, fmt, va);
+	int len = _vsnprintf(buffer, count-1, fmt, va);
 	va_end(va);
 	buffer[count-1] = 0;
 	return len;
@@ -200,10 +211,8 @@ int mir_snprintf(char *buffer, size_t count, const char* fmt, ...)
 int mir_sntprintf(TCHAR *buffer, size_t count, const TCHAR* fmt, ...)
 {
 	va_list va;
-	int len;
-
 	va_start(va, fmt);
-	len = _vsntprintf(buffer, count-1, fmt, va);
+	int len = _vsntprintf(buffer, count-1, fmt, va);
 	va_end(va);
 	buffer[count-1] = 0;
 	return len;
@@ -213,9 +222,7 @@ int mir_sntprintf(TCHAR *buffer, size_t count, const TCHAR* fmt, ...)
 
 int mir_vsnprintf(char *buffer, size_t count, const char* fmt, va_list va)
 {
-	int len;
-
-	len = _vsnprintf(buffer, count-1, fmt, va);
+	int len = _vsnprintf(buffer, count-1, fmt, va);
 	buffer[count-1] = 0;
 	return len;
 }
@@ -224,9 +231,7 @@ int mir_vsnprintf(char *buffer, size_t count, const char* fmt, va_list va)
 
 int mir_vsntprintf(TCHAR *buffer, size_t count, const TCHAR* fmt, va_list va)
 {
-	int len;
-
-	len = _vsntprintf(buffer, count-1, fmt, va);
+	int len = _vsntprintf(buffer, count-1, fmt, va);
 	buffer[count-1] = 0;
 	return len;
 }
