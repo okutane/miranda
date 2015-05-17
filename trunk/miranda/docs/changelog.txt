@@ -4,7 +4,11 @@
 
 
 * New in 0.10.32
-Bugfixes: Improved memory management
+Enhancements:
+ - Update sqlite library
+
+Bugfixes: 
+ - Improved memory management
 
 
 * New in 0.10.31
