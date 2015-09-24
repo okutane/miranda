@@ -3,6 +3,13 @@
                            www.miranda-im.org
 
 
+* New in 0.10.36
+Improvements:
+ - Improved Windows 10 support in installer
+Bugfixes:
+ - Minor installer bug fixes
+ 
+
 * New in 0.10.35
 Bugfixes: 
  - Update SQLite library
