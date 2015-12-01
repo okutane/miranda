@@ -35,7 +35,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define UN_NOTIFYTYPE_ALPHA  3
 #define UN_NOTIFYTYPE_DEF    UN_NOTIFYTYPE_STABLE
 #define UN_CUSTOMXMLURL      "UpdateNotifyCustomXMLURL"
-#define UN_URLXML            "http://update.miranda-im.org/v1/update.xml"
+#define UN_URLXML            "http://v3.update.miranda-im.org/update.xml"
 #define UN_MINCHECKTIME      60*60*24 /* Check no more than once a day */
 #define UN_DEFAULTCHECKTIME  60*60*24 /* Default to check once every 3 days */
 #define UN_FIRSTCHECK        60*60 /* First check 1 hour after startup */
