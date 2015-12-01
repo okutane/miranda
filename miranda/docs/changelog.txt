@@ -3,6 +3,11 @@
                            www.miranda-im.org
 
 
+* New in 0.10.40
+Bugfixes: 
+ - Server configuration changes
+ 
+
 * New in 0.10.39
 Bugfixes: 
  - Update SQLite library
