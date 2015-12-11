@@ -1,7 +1,9 @@
 /*
 dbRW
 
-Copyright (c) 2005-2009 Robert Rainwater
+Copyright 2000-2015 Miranda ICQ/IM project, 
+all portions of this codebase are copyrighted to the people 
+listed in contributors.txt.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -77,7 +79,7 @@ extern HANDLE hEventDeletedEvent;
 #define log4(s,a,b,c,d) 
 #endif
 
-// Temp define to let dbRW compile on  Miranda < v0.7s
+// Temp define to let SQLite Driver compile on  Miranda < v0.7s
 #ifndef MS_DB_SETSETTINGRESIDENT
 #define MS_DB_SETSETTINGRESIDENT "DB/SetSettingResident"
 #endif

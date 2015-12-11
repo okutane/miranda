@@ -1,7 +1,9 @@
 /*
 dbRW
 
-Copyright (c) 2005-2009 Robert Rainwater
+Copyright 2000-2015 Miranda ICQ/IM project, 
+all portions of this codebase are copyrighted to the people 
+listed in contributors.txt.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,7 +23,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 PLUGININFOEX pluginInfo = {
 	sizeof(PLUGININFOEX),
-	"SQLite Driver (Beta)",
+	"SQLite Driver",
 	PLUGIN_MAKE_VERSION(DBRW_VER_MAJOR,DBRW_VER_MINOR,0,0),
 	#ifdef DBRW_DEBUG
 	"Miranda IM database driver engine powered by SQLite v" SQLITE_VERSION " [Debug Build]",
@@ -129,7 +131,7 @@ static int dbrw_getCaps(int flags) {
 }
 
 static int dbrw_getFriendlyName(char *buf, size_t cch, int shortName) {
-	strncpy(buf, shortName?"dbRW Driver":pluginInfo.shortName, cch);
+	strncpy(buf, shortName?"SQLite Driver":pluginInfo.shortName, cch);
 	return 0;
 }
 
@@ -234,7 +236,7 @@ static int dbrw_Load(char *profile, void *link)
 	#ifdef DBRW_LOGGING
 	utils_log_init();
 	#endif
-    log2("Loading dbRW v%s (SQLite v%s)", DBRW_VER_STRING, SQLITE_VERSION);
+    log2("Loading SQLite Driver v%s (SQLite v%s)", DBRW_VER_STRING, SQLITE_VERSION);
     utils_vacuum_check();
 	{
         sql_exec(g_sqlite, "BEGIN TRANSACTION;");
@@ -304,7 +306,7 @@ static int dbrw_Unload(int wasLoaded) {
 	contacts_destroy();
     sql_close(g_sqlite);
 	sql_destroy();
-    log0("dbRW unloaded sucessfully");
+    log0("SQLite Driver unloaded sucessfully");
 	#ifdef DBRW_LOGGING
 	utils_log_destroy();
 	#endif

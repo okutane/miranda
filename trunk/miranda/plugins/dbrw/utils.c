@@ -1,7 +1,9 @@
 /*
 dbRW
 
-Copyright (c) 2005-2009 Robert Rainwater
+Copyright 2000-2015 Miranda ICQ/IM project, 
+all portions of this codebase are copyrighted to the people 
+listed in contributors.txt.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -34,7 +36,7 @@ void utils_log_init() {
     str2 = strrchr(szPath,'\\');
     if(str2!=NULL) 
         *str2 = 0;
-    mir_snprintf(szFullPath, sizeof(szFullPath), "%s\\dbx_rw.log", szPath);
+    mir_snprintf(szFullPath, sizeof(szFullPath), "%s\\dbx_sqlite.log", szPath);
     fp = fopen(szFullPath,"wt");
 }
 
