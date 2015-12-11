@@ -48,7 +48,7 @@ b) Update to the latest alpha version.
    section of our website.
 c) Check the list of known bugs.
    The official buglist is available at:
-   http://code.google.com/p/miranda/issues/list
+   https://sourceforge.net/p/miranda/tickets/
    Look here before you submit a new report, dont submit a new report if
    it has already been reported.
 d) Submit a bugreport.
@@ -57,7 +57,7 @@ d) Submit a bugreport.
 4. Compatibility issues
 -----------------------
 Miranda IM supports all released versions of Windows from
-Windows 95 to Windows 7. Beta versions are not supported.
+Windows 95 to Windows 10. Beta versions are not supported.
 
 a) Windows 95
 
@@ -74,7 +74,7 @@ b) Plugins
 
 5. Contact
 ----------
-The official webpage for the Miranda IM project is http://www.miranda-im.org.
+The official webpage for the Miranda IM project: http://www.miranda-im.org
 
 
 6. Support
@@ -97,7 +97,7 @@ Source code is available at: http://www.miranda-im.org/download/
 Miranda IM is released under the terms of the GNU General Public License. See
 "License.txt" for more details.
 
-Miranda IM is copyright 2000-2014 by the people listed in contributors.txt.
+Miranda IM is copyright 2000-2015 by the people listed in contributors.txt.
 
 The plugins included with this release are copyrighted by their authors. See the
 documentation for each plugin for more information.
