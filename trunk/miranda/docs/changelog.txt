@@ -3,6 +3,13 @@
                            www.miranda-im.org
 
 
+* New in 0.10.41
+Bugfixes: 
+ - SQLite driver returned the wrong name
+ - SQLite driver is out of beta
+ - Minor bug fixes
+ 
+ 
 * New in 0.10.40
 Bugfixes: 
  - Server configuration changes
