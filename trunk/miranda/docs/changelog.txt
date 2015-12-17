@@ -3,6 +3,11 @@
                            www.miranda-im.org
 
 
+* New in 0.10.42
+Bugfixes: 
+ - Improve SQLite efficiency
+ 
+ 
 * New in 0.10.41
 Bugfixes: 
  - SQLite driver returned the wrong name
