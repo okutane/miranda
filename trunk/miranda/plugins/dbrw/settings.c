@@ -96,13 +96,13 @@ void settings_init() {
 	ZeroMemory(&sContactSettings, sizeof(sContactSettings));
 	ZeroMemory(&sGlobalSettings, sizeof(sGlobalSettings));
     ZeroMemory(&sResidentSettings, sizeof(sResidentSettings));
-	sSettingNames.increment = 100;
+	sSettingNames.increment = 200;
 	sSettingNames.sortFunc = settings_cmpSettingNames;
-	sContactSettings.increment = 100;
+	sContactSettings.increment = 200;
 	sContactSettings.sortFunc = settings_cmpContactSettings;
-	sGlobalSettings.increment = 100;
+	sGlobalSettings.increment = 200;
 	sGlobalSettings.sortFunc = settings_cmpGlobalSettings;
-    sResidentSettings.increment = 100;
+    sResidentSettings.increment = 200;
     sResidentSettings.sortFunc = settings_cmpResidentSettings;
 	sql_prepare_add(settings_stmts, settings_stmts_prep, SQL_SET_STMT_NUM);
 	mirCp = CallService(MS_LANGPACK_GETCODEPAGE, 0, 0);

@@ -40,7 +40,7 @@ static sqlite3_stmt *ctc_stmts_prep[SQL_CTC_STMT_NUM] = {0};
 void contacts_init() {
 	InitializeCriticalSection(&csContactsDb);
 	ZeroMemory(&sContactList, sizeof(sContactList));
-	sContactList.increment = 50;
+	sContactList.increment = 200;
 	sContactList.sortFunc = contacts_compare;
 	sql_prepare_add(ctc_stmts, ctc_stmts_prep, SQL_CTC_STMT_NUM);
 	{

@@ -88,7 +88,7 @@ void events_init() {
 	InitializeCriticalSection(&csEventsDb);
     hHeap = HeapCreate(0, 0, 0);
     ZeroMemory(&sModuleNames, sizeof(sModuleNames));
-    sModuleNames.increment = 100;
+    sModuleNames.increment = 200;
 	sModuleNames.sortFunc = events_cmpModuleNames;
 	sql_prepare_add(evt_stmts, evt_stmts_prep, SQL_EVT_STMT_NUM);
     sql_exec(g_sqlite, "BEGIN TRANSACTION;");
