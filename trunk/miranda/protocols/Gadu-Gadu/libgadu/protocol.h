@@ -2,7 +2,7 @@
 /* $Id$ */
 
 /*
- *  (C) Copyright 2009-2015 Jakub Zawadzki <darkjames@darkjames.ath.cx>
+ *  (C) Copyright 2009-2016 Jakub Zawadzki <darkjames@darkjames.ath.cx>
  *                          Bartłomiej Zimoń <uzi18@o2.pl>
  *                          Wojtek Kaniewski <wojtekka@irc.pl>
  *

@@ -57,7 +57,7 @@ PLUGININFOEX pluginInfo = {
 	"Imports contacts and messages from Mirabilis ICQ and Miranda IM.",
 	"Miranda IM",
 	"noreply@miranda-im.org",
-	"Copyright © 2000-2015 Miranda IM Project",
+	"Copyright © 2000-2016 Miranda IM Project",
 	"http://www.miranda-im.org",
 	UNICODE_AWARE,
 	0,	//{2D77A746-00A6-4343-BFC5-F808CDD772EA}
