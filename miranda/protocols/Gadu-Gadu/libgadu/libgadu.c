@@ -2,7 +2,7 @@
 /* $Id$ */
 
 /*
- *  (C) Copyright 2001-2015 Wojtek Kaniewski <wojtekka@irc.pl>
+ *  (C) Copyright 2001-2016 Wojtek Kaniewski <wojtekka@irc.pl>
  *                          Robert J. Woźny <speedy@ziew.org>
  *                          Arkadiusz Miśkiewicz <arekm@pld-linux.org>
  *                          Tomasz Chiliński <chilek@chilan.com>

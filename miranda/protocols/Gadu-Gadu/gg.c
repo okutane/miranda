@@ -2,7 +2,7 @@
 // Gadu-Gadu Plugin for Miranda IM
 //
 // Copyright (c) 2003-2009 Adam Strzelecki <ono+miranda@java.pl>
-// Copyright (c) 2009-2015 Bartosz Bia³ek
+// Copyright (c) 2009-2016 Bartosz Bia³ek
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -31,7 +31,7 @@ PLUGININFOEX pluginInfo = {
 	"Provides support for Gadu-Gadu protocol",
 	"Miranda IM",
 	"noreply@miranda-im.org",
-	"Copyright © 2000-2015 Miranda IM Project",
+	"Copyright © 2000-2016 Miranda IM Project",
 	"http://www.miranda-im.org",
 	0,
 	0,

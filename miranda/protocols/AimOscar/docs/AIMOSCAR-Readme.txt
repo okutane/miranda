@@ -85,7 +85,7 @@ Thanks (by Aaron Myles Lendwehr):
 License and Copyright
 _____________________
 
-Copyright (C) 2008-2009 Boris Krasnovskiy
+Copyright (c) 2008-2016 Boris Krasnovskiy
 Copyright (C) 2005-2006 Aaron Myles Landwehr
 
 This program is free software; you can redistribute it and/or

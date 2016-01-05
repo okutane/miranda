@@ -1,6 +1,6 @@
 /*
 Plugin of Miranda IM for communicating with users of the AIM protocol.
-Copyright (C) 2005-2006 Aaron Myles Landwehr
+Copyright (C) 2005-2016 Aaron Myles Landwehr
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License

@@ -2,7 +2,7 @@
 
 Miranda IM: the free IM client for Microsoft* Windows*
 
-Copyright 2000-2004 Miranda ICQ/IM project,
+Copyright 2000-2016 Miranda ICQ/IM project,
 all portions of this codebase are copyrighted to the people
 listed in contributors.txt.
 
@@ -108,7 +108,7 @@ PLUGININFOEX pluginInfoEx = {
 	"Load and manage contact pictures for other plugins.",
 	"Miranda IM",
 	"noreply@miranda-im.org",
-	"Copyright © 2000-2015 Miranda IM Project",
+	"Copyright © 2000-2016 Miranda IM Project",
 	"http://www.miranda-im.org",
 	UNICODE_AWARE,
 	0,
