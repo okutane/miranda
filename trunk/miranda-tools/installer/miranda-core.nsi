@@ -6,7 +6,7 @@
 !define MIM_NAME                "Miranda IM"
 !define MIM_URL                 "http://www.miranda-im.org/"
 !define MIM_PUBLISHER           "${MIM_NAME} Project"
-!define MIM_COPYRIGHT           "Copyright © 2000-2016 ${MIM_PUBLISHER}"
+!define MIM_COPYRIGHT           "Copyright © 2000-2016 ${MIM_PUBLISHER} Project"
 
 !define MIM_BUILD_ICONS_LOW     "icons\bin\locolor"
 !define MIM_BUILD_ICONS_HI      "icons\bin\hicolor"
@@ -111,7 +111,7 @@ Page Custom CustomInstallPage CustomInstallPageLeave
 
 !insertmacro MUI_LANGUAGE "English"
 
-LangString CLOSE_WARN ${LANG_ENGLISH}     "${MIM_NAME} is currently running.  Please close the application so the installation can complete."
+LangString CLOSE_WARN ${LANG_ENGLISH}     "${MIM_NAME} is currently running.  Please close ${MIM_NAME} so the installation can complete."
 
 !macro CloseMiranda
   FindWindow $0 "Miranda"
@@ -252,7 +252,7 @@ Section "${MIM_NAME}"
   !endif
 
   ${If} $INST_MODE = 0
-   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MIM_NAME}" "DisplayName" "${MIM_NAME}" 
+   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MIM_NAME}" "DisplayName" "${MIM_NAME} ${MIM_VERSION}" 
    WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MIM_NAME}" "UninstallString" "$INSTDIR\Uninstall.exe"
    WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MIM_NAME}" "InstallLocation" "$INSTDIR"
    WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MIM_NAME}" "DisplayIcon" "$INSTDIR\${MIM_BUILD_EXE}"
@@ -316,7 +316,7 @@ Section "${MIM_NAME}"
   
   ; Run redistributable
   ${If} $INST_MODE = 0
-    !insertmacro PrintInstallerDetails "Installing Microsoft Visual C++ Redistributable Package..."
+    !insertmacro PrintInstallerDetails "Installing Microsoft Redistributable Package..."
     File "/oname=$TEMP\${MIM_BUILD_VCREDIST}" "${MIM_BUILD_VCREDIST_DIR}\${MIM_BUILD_VCREDIST}"
     ExecWait '"$TEMP\${MIM_BUILD_VCREDIST}" /q'
     Delete /REBOOTOK "$TEMP\${MIM_BUILD_VCREDIST}"
