@@ -3,6 +3,11 @@
                            www.miranda-im.org
 
 
+* New in 0.10.47
+Bugfixes: 
+ - Update SQLite library
+
+
 * New in 0.10.46
 Bugfixes: 
  - Minor installer updates
