@@ -1,4 +1,4 @@
-set Version=0.10.48
+set Version=0.10.49
 
 set PDBVer=miranda-im-v%Version%-ansi-pdb
 set FileVer=miranda-im-v%Version%-ansi
