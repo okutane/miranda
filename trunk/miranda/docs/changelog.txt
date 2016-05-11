@@ -3,6 +3,11 @@
                            www.miranda-im.org
 
 
+* New in 0.10.51
+Bugfixes: 
+ - Installer bug fixes
+
+
 * New in 0.10.50
 Bugfixes: 
  - Fix incompatible database error
