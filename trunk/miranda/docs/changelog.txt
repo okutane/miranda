@@ -5,7 +5,8 @@
 
 * New in 0.10.53
 Bugfixes: 
- - 
+ - Update NSIS
+ - Minor installer changes
 
 
 * New in 0.10.52
