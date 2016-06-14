@@ -70,7 +70,6 @@ VIAddVersionKey                 FileDescription "${MIM_NAME}"
 VIAddVersionKey                 FileVersion "${MIM_VERSION}.0"
 VIAddVersionKey                 CompanyName "${MIM_PUBLISHER}"
 VIAddVersionKey                 LegalCopyright "${MIM_COPYRIGHT}"
-VIAddVersionKey                 Comments "${MIM_URL}"
 
 VAR INST_UPGRADE
 VAR INST_SUCCESS
@@ -111,7 +110,7 @@ Page Custom CustomInstallPage CustomInstallPageLeave
 
 !insertmacro MUI_LANGUAGE "English"
 
-LangString CLOSE_WARN ${LANG_ENGLISH}     "${MIM_NAME} is currently running.  Please close ${MIM_NAME} so the installation can complete."
+LangString CLOSE_WARN ${LANG_ENGLISH}     "Please close ${MIM_NAME} so the installation can continue."
 
 !macro CloseMiranda
   FindWindow $0 "Miranda"
