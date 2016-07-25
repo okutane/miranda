@@ -3,6 +3,12 @@
                            www.miranda-im.org
 
 
+* New in 0.10.55
+Bugfixes: 
+ - NSIS system update
+ - Generate proper unicode installer
+ 
+
 * New in 0.10.54
 Bugfixes: 
  - NSIS system bug fixes
