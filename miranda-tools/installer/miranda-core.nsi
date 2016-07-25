@@ -57,6 +57,9 @@
 Name                            "${MIM_NAME} ${MIM_VERSION}"
 OutFile                         "${MIM_BUILD_SRC}\bin\miranda-im-v${MIM_VERSION}-${MIM_BUILD_TYPE}.exe"
 
+!ifdef MIM_BUILD_UNICODE || MIM_BUILD_X64
+Unicode							true
+!endif
 
 InstallDir                      "$PROGRAMFILES\${MIM_NAME}"
 InstallDirRegKey                HKLM "Software\Microsoft\Windows\CurrentVersion\App Paths\${MIM_BUILD_EXE}" "Path"
