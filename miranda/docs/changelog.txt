@@ -3,6 +3,11 @@
                            www.miranda-im.org
 
 
+* New in 0.10.57
+Bugfixes: 
+ - Update SQLite library
+ 
+ 
 * New in 0.10.56
 Bugfixes: 
  - Update SQLite library
