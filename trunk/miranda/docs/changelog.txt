@@ -3,6 +3,13 @@
                            www.miranda-im.org
 
 
+* New in 0.10.58
+Bugfixes: 
+ - SQLite driver version mismatch
+ - Safer event storing in SQLite driver
+ - Installer updates
+ 
+ 
 * New in 0.10.57
 Bugfixes: 
  - Update SQLite library
