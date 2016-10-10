@@ -242,7 +242,7 @@ static int dbrw_Load(char *profile, void *link)
         sql_exec(g_sqlite, "BEGIN TRANSACTION;");
 		sql_exec(g_sqlite, "PRAGMA locking_mode = EXCLUSIVE;");
 		sql_exec(g_sqlite, "PRAGMA synchronous = NORMAL;");
-		sql_exec(g_sqlite, "PRAGMA cache_size = 12000;");
+		sql_exec(g_sqlite, "PRAGMA cache_size = 6000;");
 		sql_exec(g_sqlite, "PRAGMA temp_store = MEMORY;");
         sql_exec(g_sqlite, "COMMIT;");
 	}
