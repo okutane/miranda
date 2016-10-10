@@ -3,6 +3,16 @@
                            www.miranda-im.org
 
 
+* New in 0.10.59
+Improvements:
+ - SQLite driver performance improvements
+ - Improve database manager display
+ - Custom button UI performance improvements
+
+Bugfixes: 
+ - Fix quick launch shortcuts on Windows 10
+ 
+
 * New in 0.10.58
 Bugfixes: 
  - SQLite driver version mismatch
