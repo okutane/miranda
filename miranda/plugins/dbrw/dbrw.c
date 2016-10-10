@@ -131,7 +131,7 @@ static int dbrw_getCaps(int flags) {
 }
 
 static int dbrw_getFriendlyName(char *buf, size_t cch, int shortName) {
-	strncpy(buf, shortName?"SQLite Driver":pluginInfo.shortName, cch);
+	strncpy(buf, shortName?"SQLite Driver":"SQLite Database Support", cch);
 	return 0;
 }
 
