@@ -92,7 +92,7 @@ void UnloadButtonModule()
 
 // Used for our own cheap TrackMouseEvent
 #define BUTTON_POLLID       100
-#define BUTTON_POLLDELAY    50
+#define BUTTON_POLLDELAY    100
 
 static void DestroyTheme(MButtonCtrl *ctl) {
 	if (closeThemeData) {
