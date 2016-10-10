@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 PLUGININFOEX pluginInfo = {
 	sizeof(PLUGININFOEX),
-	"SQLite Driver",
+	"Database driver (SQLite)",
 	PLUGIN_MAKE_VERSION(DBRW_VER_MAJOR,DBRW_VER_MINOR,0,0),
 	#ifdef DBRW_DEBUG
 	"Miranda IM database driver engine powered by SQLite v" SQLITE_VERSION " [Debug Build]",

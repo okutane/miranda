@@ -32,9 +32,9 @@ extern char szDbPath[MAX_PATH];
 
 static PLUGININFOEX pluginInfo = {
 	sizeof(PLUGININFOEX),
-	"Miranda mmap database driver",
+	"Database driver (MMAP)",
 	__VERSION_DWORD,
-	"Provides Miranda database support: global settings, contacts, history, settings per contact.",
+	"Miranda IM database driver engine.",
 	"Miranda IM",
 	"noreply@miranda-im.org",
 	"Copyright © 2000-2016 Miranda IM Project",

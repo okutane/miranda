@@ -37,7 +37,7 @@ PLUGINLINK *pluginLink;
 
 static PLUGININFOEX pluginInfo = {
 	sizeof(PLUGININFOEX),
-	"Miranda database driver",
+	"Database driver (legacy)",
 	__VERSION_DWORD,
 	"Miranda IM database driver engine (legacy).",
 	"Miranda IM",
