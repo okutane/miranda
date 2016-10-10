@@ -353,8 +353,10 @@ SubSection /e "Options" pOptions
   Section "Install Quicklaunch Shortcut" pSCQuickLaunch
     !insertmacro PrintInstallerDetails "Configuring ${MIM_NAME}..."
     !insertmacro WriteInstallerOption "1" "QuickLaunchShortCut"
+	${If} ${AtLeastWin10}
     SetOutPath "$INSTDIR"
     CreateShortCut  "$QUICKLAUNCH\${MIM_NAME}.lnk" "$INSTDIR\${MIM_BUILD_EXE}"
+	${EndIf}
   SectionEnd
 SubSectionEnd
 
