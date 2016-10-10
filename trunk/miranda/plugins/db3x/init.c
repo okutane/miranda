@@ -39,7 +39,7 @@ static PLUGININFOEX pluginInfo = {
 	sizeof(PLUGININFOEX),
 	"Miranda database driver",
 	__VERSION_DWORD,
-	"Provides Miranda database support: global settings, contacts, history, settings per contact.",
+	"Miranda IM database driver engine (legacy).",
 	"Miranda IM",
 	"noreply@miranda-im.org",
 	"Copyright © 2000-2016 Miranda IM Project",
