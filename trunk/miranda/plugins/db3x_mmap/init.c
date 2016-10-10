@@ -149,7 +149,7 @@ static int UnloadDatabase(int wasLoaded)
 
 static int getFriendlyName( char * buf, size_t cch, int shortName )
 {
-	strncpy(buf,shortName ? "db3x mmap driver" : "db3x mmap database support",cch);
+	strncpy(buf,shortName ? "MMAP Driver" : "MMAP Database Support",cch);
 	return 0;
 }
 

@@ -153,7 +153,7 @@ static int UnloadDatabase(int wasLoaded)
 
 static int getFriendlyName( char * buf, size_t cch, int shortName )
 {
-	strncpy(buf,shortName ? "db3x driver" : "db3x database support",cch);
+	strncpy(buf,shortName ? "db3x Driver" : "db3x Database Support",cch);
 	return 0;
 }
 
