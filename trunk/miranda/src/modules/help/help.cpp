@@ -61,7 +61,7 @@ static int BugCommandEvent(WPARAM wParam, LPARAM lParam) {
 
 static INT_PTR BugCommand(WPARAM, LPARAM)
 {
-    NotifyEventHooks(hBugEvent, 0, (LPARAM)"http://code.google.com/p/miranda/issues/list");
+    NotifyEventHooks(hBugEvent, 0, (LPARAM)"https://sourceforge.net/p/miranda/tickets/?source=navbar");
 	return 0;
 }
 
