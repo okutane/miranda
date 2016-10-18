@@ -26,9 +26,9 @@ PLUGININFOEX pluginInfo = {
 	"Database driver (SQLite)",
 	PLUGIN_MAKE_VERSION(DBRW_VER_MAJOR,DBRW_VER_MINOR,0,0),
 	#ifdef DBRW_DEBUG
-	"Miranda IM database driver engine powered by SQLite v" SQLITE_VERSION " [Debug Build]",
+	"Miranda IM database driver engine powered by SQLite (Debug)",
 	#else
-	"Miranda IM database driver engine powered by SQLite v" SQLITE_VERSION,
+	"Miranda IM database driver engine powered by SQLite",
 	#endif
 	"Miranda IM",
 	"noreply@miranda-im.org",

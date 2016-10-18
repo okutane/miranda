@@ -30,9 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define DBRW_ROT                 5
 #define DBRW_SETTINGS_FLUSHCACHE 1000*2
 #define DBRW_EVENTS_FLUSHCACHE   1000*5
-#define DBRW_COMPACT_DAYS        3
-
-#define MIRANDA_VER 0x0800
+#define DBRW_COMPACT_DAYS        1
 
 #include <m_stdhdr.h>
 
