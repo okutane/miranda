@@ -3,6 +3,14 @@
                            www.miranda-im.org
 
 
+* New in 0.10.60
+Bugfixes: 
+ - Update SQLite library
+ - Prevent expanding SQLite database file size
+ - Fix bug reports service location
+ - Minor UI bugfixes
+ 
+
 * New in 0.10.59
 Improvements:
  - SQLite driver performance improvements
