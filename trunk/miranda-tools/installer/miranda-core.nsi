@@ -1,7 +1,8 @@
-!include "MUI.nsh"
+!include "MUI2.nsh"
 !include "Sections.nsh"
 !include "WinVer.nsh"
 !include "LogicLib.nsh"
+!include "nsDialogs.nsh"
 
 !define MIM_NAME                "Miranda IM"
 !define MIM_URL                 "http://www.miranda-im.org/"
@@ -77,6 +78,8 @@ VIAddVersionKey                 LegalCopyright "${MIM_COPYRIGHT}"
 VAR INST_UPGRADE
 VAR INST_SUCCESS
 VAR INST_MODE
+VAR INST_MODE_DEF
+VAR INST_MODE_POR
 VAR INST_DIR
 VAR INST_WARN
 
@@ -505,20 +508,33 @@ FunctionEnd
 
 Function CustomInstallPage
   !insertmacro MUI_HEADER_TEXT "Installation Mode" "Select install type."
-  ReserveFile "miranda-ui-type.ini"
-  !insertmacro MUI_INSTALLOPTIONS_EXTRACT "miranda-ui-type.ini"
-  ${If} $INST_MODE = 0
-    !insertmacro MUI_INSTALLOPTIONS_WRITE "miranda-ui-type.ini" "Field 2" "State" "1"
-    !insertmacro MUI_INSTALLOPTIONS_WRITE "miranda-ui-type.ini" "Field 3" "State" "0"
-  ${Else}
-    !insertmacro MUI_INSTALLOPTIONS_WRITE "miranda-ui-type.ini" "Field 2" "State" "0"
-    !insertmacro MUI_INSTALLOPTIONS_WRITE "miranda-ui-type.ini" "Field 3" "State" "1"
+  nsDialogs::Create 1018
+  Pop $0
+  ${If} $0 == error
+    Abort
   ${EndIf}
-  !insertmacro MUI_INSTALLOPTIONS_DISPLAY "miranda-ui-type.ini"
+  ${NSD_CreateLabel} 10 3 278 30 "Please select the type of installation you wish to peform."
+  ${NSD_CreateRadioButton} 25 47 155 16 "Default Installation"
+  Pop $INST_MODE_DEF
+  ${NSD_CreateRadioButton} 25 70 155 16 "Portable Installation"
+  Pop $INST_MODE_POR
+  ${If} $INST_MODE = 0
+    ${NSD_SetState} $INST_MODE_DEF ${BST_CHECKED}
+	${NSD_SetState} $INST_MODE_POR ${BST_UNCHECKED}
+  ${Else}
+    ${NSD_SetState} $INST_MODE_DEF ${BST_UNCHECKED}
+	${NSD_SetState} $INST_MODE_POR ${BST_CHECKED}
+  ${EndIf}
+  nsDialogs::Show
 FunctionEnd
 
 Function CustomInstallPageLeave
-  !insertmacro MUI_INSTALLOPTIONS_READ $INST_MODE "miranda-ui-type.ini" "Field 3" "State"
+  ${NSD_GetState} $INST_MODE_DEF $0
+  ${If} $0 = ${BST_CHECKED}
+    StrCpy $INST_MODE 0
+  ${Else}
+    StrCpy $INST_MODE 1
+  ${Endif}
   ${If} $INST_MODE = 1
 	StrCpy $R0 $WINDIR 2
 	StrCpy $INST_DIR "$R0\${MIM_NAME}"
@@ -531,6 +547,7 @@ Function CustomInstallPageLeave
 	${EndIf}
   ${EndIf}
 FunctionEnd
+
 
 Function VerifyComponentDisplay
   ${If} $INST_MODE = 1
