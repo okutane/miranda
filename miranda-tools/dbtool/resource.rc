@@ -280,7 +280,7 @@ BEGIN
             VALUE "FileDescription", "Miranda IM Database Tool"
             VALUE "FileVersion", "0.8.3.0"
             VALUE "InternalName", "dbtool"
-            VALUE "LegalCopyright", "Copyright © 2000-2014 Miranda IM Project. This software is licensed under the terms of the GNU General Public License."
+            VALUE "LegalCopyright", "Copyright © 2000-2016 Miranda IM Project. This software is licensed under the terms of the GNU General Public License."
             VALUE "OriginalFilename", "dbtool.exe"
             VALUE "ProductName", "Miranda Database Tool"
             VALUE "ProductVersion", "0.8.3.0"
