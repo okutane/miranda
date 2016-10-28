@@ -3,6 +3,14 @@
                            www.miranda-im.org
 
 
+* New in 0.10.61
+Enhancements: 
+ - Installer improvements (remove legacy UI)
+
+Bugfixes: 
+ - Minor bug fixes
+
+
 * New in 0.10.60
 Bugfixes: 
  - Update SQLite library
