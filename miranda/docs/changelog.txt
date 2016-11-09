@@ -3,6 +3,12 @@
                            www.miranda-im.org
 
 
+* New in 0.10.62
+Bugfixes: 
+ - Update SQLite library
+ - Fixed excessive memory use issue when exiting using SQLite database
+ 
+ 
 * New in 0.10.61
 Enhancements: 
  - Installer improvements (remove legacy UI)
