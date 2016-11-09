@@ -179,7 +179,6 @@ static INT_PTR CALLBACK utils_vacuum_proc(HWND hwndDlg, UINT msg, WPARAM wParam,
 	switch (msg) {
 	case WM_INITDIALOG:
         hwndVacuum = hwndDlg;
-        SetDlgItemTextA(hwndDlg, IDC_TEXT, Translate("Your Miranda IM profile is being compacted.  Please wait..."));
         mir_forkthread(utils_vacuum_thread, 0);
         break;
     case DM_VACUUM:
