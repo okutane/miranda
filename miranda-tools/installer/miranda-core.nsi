@@ -13,7 +13,7 @@
 !define MIM_BUILD_ICONS_HI      "icons\bin\hicolor"
 !define MIM_BUILD_OPTIONS_FILE  "miranda32.lst"
 !define MIM_BUILD_OPTIONS_SECT  "InstalledSections"
-!define MIM_BUILD_SUCCESS       "http://www.miranda-im.org/donate/install/"
+!define MIM_BUILD_SUCCESS       "http://www.miranda-im.org/donate/"
 
 !ifdef MIM_BUILD_UNICODE
 !define MIM_BUILD_TYPE          "unicode"
