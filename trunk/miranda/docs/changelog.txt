@@ -3,6 +3,13 @@
                            www.miranda-im.org
 
 
+* New in 0.10.64
+Bugfixes: 
+ - Fix x64 installer
+ - Fix installer typos
+ - Update installer system (NSIS)
+ 
+ 
 * New in 0.10.63
 Bugfixes: 
  - Update SQLite library
