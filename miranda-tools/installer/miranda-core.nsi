@@ -116,7 +116,7 @@ Page Custom CustomInstallPage CustomInstallPageLeave
 
 !insertmacro MUI_LANGUAGE "English"
 
-LangString CLOSE_WARN ${LANG_ENGLISH}     "Please close ${MIM_NAME} so the installation can continue."
+LangString CLOSE_WARN ${LANG_ENGLISH}     "${MIM_NAME} is currently running. Please close ${MIM_NAME} to continue."
 
 !macro CloseMiranda
   FindWindow $0 "Miranda"
