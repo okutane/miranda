@@ -62,7 +62,11 @@ OutFile                         "${MIM_BUILD_SRC}\bin\miranda-im-v${MIM_VERSION}
 Unicode							true
 !endif
 
+!ifdef MIM_BUILD_X64
+InstallDir                      "$PROGRAMFILES64\${MIM_NAME}"
+!else
 InstallDir                      "$PROGRAMFILES\${MIM_NAME}"
+!endif
 InstallDirRegKey                HKLM "Software\Microsoft\Windows\CurrentVersion\App Paths\${MIM_BUILD_EXE}" "Path"
 SetOverWrite                    on
 BrandingText                    "miranda-im.org"
@@ -541,7 +545,11 @@ Function CustomInstallPageLeave
   ${Else}
 	ReadRegStr $0 HKLM "Software\Microsoft\Windows\CurrentVersion\App Paths\${MIM_BUILD_EXE}" "Path"
 	${If} $0 == ""
-      StrCpy $INST_DIR "$PROGRAMFILES\${MIM_NAME}"
+	  !ifdef MIM_BUILD_X64
+        StrCpy $INST_DIR "$PROGRAMFILES64\${MIM_NAME}"
+	  !else
+	    StrCpy $INST_DIR "$PROGRAMFILES\${MIM_NAME}"
+	  !endif
 	${Else}
 	  StrCpy $INST_DIR $0
 	${EndIf}
