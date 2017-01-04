@@ -74,7 +74,7 @@ BEGIN
             VALUE "FileDescription", "Service plugin to load and update avatars for Miranda IM"
             VALUE "FileVersion", __FILEVERSION_STRING
             VALUE "InternalName", "avs"
-            VALUE "LegalCopyright", "Copyright (C) 2010-2016, Nightwish, Pescuma"
+            VALUE "LegalCopyright", "Copyright (C) 2010-2017, Nightwish, Pescuma"
             VALUE "LegalTrademarks", "Licensed under the Gnu General Public License V2 or any later version"
             VALUE "OriginalFilename", "avs.dll"
             VALUE "ProductName", "Miranda IM Avatar Service plugin"
@@ -85,7 +85,7 @@ BEGIN
             VALUE "FileDescription", "Service plugin to load and update avatars for Miranda IM"
             VALUE "FileVersion", __FILEVERSION_STRING
             VALUE "InternalName", "avsW"
-            VALUE "LegalCopyright", "Copyright (C) 2010-2016, Nightwish, Pescuma"
+            VALUE "LegalCopyright", "Copyright (C) 2010-2017, Nightwish, Pescuma"
             VALUE "LegalTrademarks", "Licensed under the Gnu General Public License V2 or any later version"
             VALUE "OriginalFilename", "avs.dll"
             VALUE "ProductName", "Miranda IM Avatar Service (Unicode)"

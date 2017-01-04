@@ -18,7 +18,7 @@ BEGIN
             VALUE "FileDescription", "SQLite Driver for Miranda IM"
             VALUE "FileVersion", DBRW_VER_STRING
             VALUE "InternalName", "SQLite Driver"                               
-            VALUE "LegalCopyright", "Copyright © 2006-2016 Miranda IM Project."
+            VALUE "LegalCopyright", "Copyright © 2006-2017 Miranda IM Project."
             VALUE "OriginalFilename", "dbx_sqlite.dll"
             VALUE "ProductName", "SQLite Driver"
             VALUE "ProductVersion", DBRW_VER_STRING
