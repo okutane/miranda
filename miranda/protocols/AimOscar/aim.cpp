@@ -1,6 +1,6 @@
 /*
 Plugin of Miranda IM for communicating with users of the AIM protocol.
-Copyright (c) 2008-2016 Boris Krasnovskiy
+Copyright (c) 2008-2017 Boris Krasnovskiy
 Copyright (C) 2005-2006 Aaron Myles Landwehr
 
 This program is free software; you can redistribute it and/or
@@ -62,7 +62,7 @@ static const PLUGININFOEX pluginInfo =
 	"Provides support for AOL® Instant Messenger (AIM) protocol",
 	"Miranda IM",
 	"noreply@miranda-im.org",
-	"Copyright © 2000-2016 Miranda IM Project",
+	"Copyright © 2000-2017 Miranda IM Project",
 	"http://www.miranda-im.org",
 	UNICODE_AWARE,		//not transient
 	0,		//doesn't replace anything built-in

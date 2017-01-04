@@ -8,7 +8,7 @@
 #define __DESC	                  "IRC protocol for Miranda IM"
 #define __AUTHOR                 "Miranda IM"
 #define __AUTHOREMAIL            "noreply@miranda-im.org"
-#define __COPYRIGHT              "Copyright © 2000-2016 Miranda IM Project"
+#define __COPYRIGHT              "Copyright © 2000-2017 Miranda IM Project"
 #define __AUTHORWEB              "http://www.miranda-im.org"
 
 #define __PLUGIN_NAME            "IRC protocol"

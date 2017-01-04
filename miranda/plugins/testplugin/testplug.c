@@ -22,7 +22,7 @@ PLUGININFOEX pluginInfo={
 	"The long description of your plugin, to go in the plugin options dialog",
 	"Miranda IM",
 	"noreply@miranda-im.org",
-	"Copyright © 2000-2016 Miranda IM Project",
+	"Copyright © 2000-2017 Miranda IM Project",
 	"http://www.miranda-im.org",
 	0,		//not transient
 	0,		//doesn't replace anything built-in

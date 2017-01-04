@@ -4,7 +4,7 @@
  *
  * Miranda IM: the free IM client for Microsoft* Windows*
  *
- * Copyright 2000-2016 Miranda ICQ/IM project,
+ * Copyright 2000-2017 Miranda ICQ/IM project,
  * all portions of this codebase are copyrighted to the people
  * listed in contributors.txt.
  *
@@ -28,7 +28,7 @@
  * original chat module for Miranda IM, written and copyrighted
  * by Joergen Persson in 2005.
  *
- * (C) 2005-2016 by silvercircle _at_ gmail _dot_ com and contributors
+ * (C) 2005-2017 by silvercircle _at_ gmail _dot_ com and contributors
  *
  * $Id$
  *

@@ -1,7 +1,7 @@
 /*
 dbRW
 
-Copyright 2000-2016 Miranda ICQ/IM project, 
+Copyright 2000-2017 Miranda ICQ/IM project, 
 all portions of this codebase are copyrighted to the people 
 listed in contributors.txt.
 
@@ -32,7 +32,7 @@ PLUGININFOEX pluginInfo = {
 	#endif
 	"Miranda IM",
 	"noreply@miranda-im.org",
-	"Copyright © 2000-2016 Miranda IM Project",
+	"Copyright © 2000-2017 Miranda IM Project",
 	"http://www.miranda-im.org/",
 	0,
 	DEFMOD_DB,

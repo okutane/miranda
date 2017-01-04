@@ -4,8 +4,8 @@
 // 
 // Copyright © 2000-2001 Richard Hughes, Roland Rabien, Tristan Van de Vreede
 // Copyright © 2001-2002 Jon Keating, Richard Hughes
-// Copyright © 2002-2016 Martin Öberg, Sam Kothari, Robert Rainwater
-// Copyright © 2004-2016 Angeli-Ka, Joe Kucera
+// Copyright © 2002-2017 Martin Öberg, Sam Kothari, Robert Rainwater
+// Copyright © 2004-2017 Angeli-Ka, Joe Kucera
 // 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License

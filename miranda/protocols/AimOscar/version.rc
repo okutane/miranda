@@ -23,7 +23,7 @@ BEGIN
             VALUE "FileDescription", "Miranda IM AIM Protocol"
             VALUE "FileVersion", __VERSION_STRING
             VALUE "InternalName", "aim"
-            VALUE "LegalCopyright", "Copyright (c) 2008-2016 Boris Krasnovskiy, 2005-2006 Aaron Myles Landwehr"
+            VALUE "LegalCopyright", "Copyright (c) 2008-2017 Boris Krasnovskiy, 2005-2006 Aaron Myles Landwehr"
             VALUE "OriginalFilename", "aim.dll"
             VALUE "ProductName", "Miranda IM AIM Protocol"
             VALUE "ProductVersion", __VERSION_STRING
