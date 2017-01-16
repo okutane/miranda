@@ -3,6 +3,11 @@
                            www.miranda-im.org
 
 
+* New in 0.10.66
+Bugfixes: 
+ - Update SQLite library
+ 
+
 * New in 0.10.65
 Bugfixes: 
  - Fix CPU usage in SQLite driver
