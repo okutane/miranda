@@ -5,6 +5,7 @@
 
 * New in 0.10.67
 Bugfixes:
+ - Update zlib library to 1.2.11
  - Update SQLite library
  - Improve CPU usage 
 
