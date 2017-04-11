@@ -3,6 +3,13 @@
                            www.miranda-im.org
 
 
+* New in 0.10.68
+Enhancements:
+ - Improved database optimization on exit
+Bugfixes:
+ - Update SQLite library
+
+
 * New in 0.10.67
 Bugfixes:
  - Update zlib library to 1.2.11
