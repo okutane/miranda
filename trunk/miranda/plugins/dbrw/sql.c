@@ -205,6 +205,8 @@ int sql_open(const char *path, sqlite3 **sql) {
 
 int sql_close(sqlite3 *sql) {
     TSqlMessage msg;
+	
+	sql_exec(sql, "PRAGMA optimize;"); 
     msg.op = SQL_CLOSE;
     msg.pDb = sql;
     sql_server_sync(&msg);
