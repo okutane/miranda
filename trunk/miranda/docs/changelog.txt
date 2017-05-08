@@ -3,6 +3,11 @@
                            www.miranda-im.org
 
 
+* New in 0.10.69
+Bugfixes:
+ - Fix hang on exit
+ 
+ 
 * New in 0.10.68
 Enhancements:
  - Improved database optimization on exit
