@@ -170,6 +170,7 @@ static HWND hwndVacuum;
 #define DBRW_VACUUM_KEY "LastCompact"
 
 static void __cdecl utils_vacuum_thread(void *args) {
+	sql_exec(g_sqlite, "PRAGMA optimize;"); 
     sql_exec(g_sqlite, "VACUUM;");
     if (IsWindow(hwndVacuum))
         SendMessage(hwndVacuum, DM_VACUUM, 0, 0);
