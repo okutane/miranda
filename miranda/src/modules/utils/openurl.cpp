@@ -23,10 +23,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "commonheaders.h"
 #include <ctype.h>
 
-#define DDEMESSAGETIMEOUT  1000
-#define WNDCLASS_DDEMSGWINDOW  _T("MirandaDdeMsgWindow")
+//#define DDEMESSAGETIMEOUT  1000
+//#define WNDCLASS_DDEMSGWINDOW  _T("MirandaDdeMsgWindow")
 
-struct DdeMsgWindowData {
+/*struct DdeMsgWindowData {
 	int fAcked,fData;
 	HWND hwndDde;
 };
@@ -127,6 +127,7 @@ static int DdeOpenUrl(const char *szBrowser,char *szUrl,int newWindow,HWND hwndD
 	mir_free(szItemName);
 	return 0;
 }
+*/
 
 typedef struct {
     char *szUrl;
@@ -137,14 +138,14 @@ static void OpenURLThread(void *arg)
 {
    TOpenUrlInfo *hUrlInfo = (TOpenUrlInfo*)arg;
 	char *szResult;
-	HWND hwndDdeMsg;
-	struct DdeMsgWindowData msgWndData={0};
-	char *pszProtocol;
-	HKEY hKey;
-	char szSubkey[80];
-	char szCommandName[MAX_PATH];
-	DWORD dataLength;
-	int success=0;
+	//HWND hwndDdeMsg;
+	//struct DdeMsgWindowData msgWndData={0};
+	//char *pszProtocol;
+	//HKEY hKey;
+	//char szSubkey[80];
+	//char szCommandName[MAX_PATH];
+	//DWORD dataLength;
+	/* int success=0;
     
    if (!hUrlInfo->szUrl) return;
 	hwndDdeMsg=CreateWindow(WNDCLASS_DDEMSGWINDOW,_T(""),0,0,0,0,0,NULL,NULL,hMirandaInst,NULL);
@@ -173,7 +174,7 @@ static void OpenURLThread(void *arg)
 
 	DestroyWindow(hwndDdeMsg);
 	if(success) return;
-
+*/
 	//wack a protocol on it
 	if((isalpha(hUrlInfo->szUrl[0]) && hUrlInfo->szUrl[1]==':') || hUrlInfo->szUrl[0]=='\\') {
 		szResult=(char*)mir_alloc(lstrlenA(hUrlInfo->szUrl)+9);
@@ -211,7 +212,7 @@ static INT_PTR OpenURL(WPARAM wParam,LPARAM lParam) {
 
 int InitOpenUrl(void)
 {
-	WNDCLASS wcl;
+	/*WNDCLASS wcl;
 	wcl.lpfnWndProc=DdeMessageWindow;
 	wcl.cbClsExtra=0;
 	wcl.cbWndExtra=sizeof(void*);
@@ -222,7 +223,7 @@ int InitOpenUrl(void)
 	wcl.hIcon=NULL;
 	wcl.lpszMenuName=NULL;
 	wcl.style=0;
-	RegisterClass(&wcl);
+	RegisterClass(&wcl);*/
 	CreateServiceFunction(MS_UTILS_OPENURL,OpenURL);
 	return 0;
 }
