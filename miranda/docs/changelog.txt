@@ -3,6 +3,12 @@
                            www.miranda-im.org
 
 
+* New in 0.10.70
+Bugfixes:
+ - Update SQLite library
+ - Fix url opening issues
+ 
+
 * New in 0.10.69
 Bugfixes:
  - Fix hang on exit
