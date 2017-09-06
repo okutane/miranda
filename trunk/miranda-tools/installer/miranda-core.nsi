@@ -233,6 +233,7 @@ Section "${MIM_NAME}"
   !ifdef MIM_BUILD_UNICODE || MIM_BUILD_X64
   !insertmacro InstallMirandaPlugin "dbx_mmap.dll"
   Delete "$INSTDIR\Plugins\dbx_3x.dll"
+  !insertmacro InstallMirandaPlugin "dbx_sqlite.dll"
   !else
   !insertmacro InstallMirandaPlugin "dbx_3x.dll"
   Delete "$INSTDIR\Plugins\dbx_mmap.dll"
@@ -414,6 +415,7 @@ Section Uninstall
   Delete "$INSTDIR\Plugins\clist_nicer.dll"
   Delete "$INSTDIR\Plugins\dbx_3x.dll"
   Delete "$INSTDIR\Plugins\dbx_mmap.dll"
+  Delete "$INSTDIR\Plugins\dbx_sqlite.dll"
   Delete "$INSTDIR\Plugins\gg.dll"
   Delete "$INSTDIR\Plugins\icq.dll"
   Delete "$INSTDIR\Plugins\import.dll"
