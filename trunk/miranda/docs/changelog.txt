@@ -5,6 +5,12 @@
 
 * New in 0.10.73
 Bugfixes:
+ - Fix memory leak
+ - Default to sqlite databases
+ 
+ 
+* New in 0.10.73
+Bugfixes:
  - Update installer core
  
 
