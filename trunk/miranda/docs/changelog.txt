@@ -3,7 +3,7 @@
                            www.miranda-im.org
 
 
-* New in 0.10.73
+* New in 0.10.74
 Bugfixes:
  - Fix memory leak
  - Default to sqlite databases
