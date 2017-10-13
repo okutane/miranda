@@ -230,10 +230,10 @@ Section "${MIM_NAME}"
   !insertmacro InstallMirandaPlugin "srmm.dll"
   !insertmacro InstallMirandaPlugin "avs.dll"
   !insertmacro InstallMirandaPlugin "advaimg.dll"
+  !insertmacro InstallMirandaPlugin "dbx_sqlite.dll"
   !ifdef MIM_BUILD_UNICODE || MIM_BUILD_X64
   !insertmacro InstallMirandaPlugin "dbx_mmap.dll"
   Delete "$INSTDIR\Plugins\dbx_3x.dll"
-  !insertmacro InstallMirandaPlugin "dbx_sqlite.dll"
   !else
   !insertmacro InstallMirandaPlugin "dbx_3x.dll"
   Delete "$INSTDIR\Plugins\dbx_mmap.dll"
