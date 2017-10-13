@@ -3,6 +3,12 @@
                            www.miranda-im.org
 
 
+* New in 0.10.75
+Bugfixes:
+ - Reast in Peace AIM
+ - Fix sqlite database driver installation on all build types
+
+
 * New in 0.10.74
 Bugfixes:
  - Fix memory leak
