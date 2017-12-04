@@ -3,6 +3,12 @@
                            www.miranda-im.org
 
 
+* New in 0.10.76
+Bugfixes:
+ - Fix possible database corruption and segfault
+ - Update SQLite library
+
+
 * New in 0.10.75
 Bugfixes:
  - Reast in Peace AIM
